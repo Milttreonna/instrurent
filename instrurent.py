@@ -7,6 +7,12 @@ def validEmail(n):
         return ("Invalid")
 
 
+def test_validEmail():
+    assert validEmail("onna@gmail.com") == "onna@gmail.com"
+    assert validEmail("onna") == "Invalid"
+    assert validEmail("onna@gmail.com") != "Invalid"
+
+
 if __name__ == '__main__':
     # user = input("Customer or Employee?").lower().strip()
     userEmail = input("Enter your email address: ")
