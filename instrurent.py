@@ -17,6 +17,10 @@ def test_validEmail_uppercase():
     assert validEmail("ONNA@GMAIL.COM") == "onna@gmail.com"
 
 
+def test_validEmail_spaces():
+    assert validEmail("onna @gmail .com") == "onna@gmail.com"
+
+
 if __name__ == '__main__':
     # user = input("Customer or Employee?").lower().strip()
     userEmail = input("Enter your email address: ")
