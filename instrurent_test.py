@@ -1,4 +1,7 @@
-def validEmail(n):
+from instrurent import *
+
+
+def validEmail(e):
     '''(str)->str
 
     Checks to see if email address is valid
@@ -15,6 +18,12 @@ def validEmail(n):
         return ("Valid email")
     else:
         return ("Invalid email")
+
+
+def rent_price(price):
+
+
+
 
 
 def test_validEmail():
