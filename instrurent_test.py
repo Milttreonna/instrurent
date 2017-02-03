@@ -20,11 +20,18 @@ def test_validEmail_spaces():
 
 def test_rent_price():
     assert rent_price(100) == 13.0
-    # assert rent_price(drums) == 118.3
 
 
 def test_rent_price_decimal():
     assert rent_price(1342.30) == 174.5
+
+
+def test_add_tax():
+    assert add_tax(4.00) == 4.07
+
+
+def test_add_tax_large():
+    assert add_tax(534.99) == 572.44
 
 
 def test_add_tax():

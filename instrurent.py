@@ -24,11 +24,6 @@ def validEmail(e):
         return ("Invalid email")
 
 
-def show_inventory():
-    with open('inventory.csv', 'r') as file:
-        i = file.read()
-
-
 def rent_price(price):
     '''(str)->int
 
@@ -38,9 +33,9 @@ def rent_price(price):
     return rent
 
 
-def add_tax():
+def add_tax(rent):
     ''' '''
-    rent = rent_price(price)
+
     tax = rent * .07
     rent += tax
     total = round(rent, 2)
