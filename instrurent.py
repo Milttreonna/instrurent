@@ -19,19 +19,19 @@ def validEmail(n):
 
 def test_validEmail():
     '''tests for validEmail() '''
-    assert validEmail("onna@gmail.com") == "Valid email"
-    assert validEmail("onna") == "Invalid email"
-    assert validEmail("onna@gmail.com") != "Invalid email"
+    assert validEmail("person123@email.com") == "Valid email"
+    assert validEmail("person") == "Invalid email"
+    assert validEmail("person123@email.com") != "Invalid email"
 
 
 def test_validEmail_uppercase():
     ''' tests'''
-    assert validEmail("ONNA@GMAIL.COM") == "Valid email"
+    assert validEmail("PERSON123@GMAIL.COM") == "Valid email"
 
 
 def test_validEmail_spaces():
     ''' tests'''
-    assert validEmail("onna @gmail .com") == "Valid email"
+    assert validEmail("person123 @email .com") == "Valid email"
 
 
 if __name__ == '__main__':
