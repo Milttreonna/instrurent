@@ -10,7 +10,7 @@ def test_validEmail():
 
 def test_validEmail_uppercase():
     ''' tests'''
-    assert validEmail("PERSON123@GMAIL.COM") == "Valid email"
+    assert validEmail("PERSON123@EMAIL.COM") == "Valid email"
 
 
 def test_validEmail_spaces():
@@ -19,7 +19,7 @@ def test_validEmail_spaces():
 
 
 def test_rent_total():
-    ''' '''
+    ''' tests for rent_total '''
 
 
 def test_full_total():
