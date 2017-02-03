@@ -15,7 +15,7 @@ def validEmail(e):
         return ("Invalid email")
 
 
-def show_Invenory(i):
+def show_inventory(i):
     with open('inventory.txt', 'r') as file:
         inventory = file.read().split()
 
