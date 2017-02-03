@@ -1,3 +1,7 @@
+with open("emails.csv", "r") as emailFile:
+    emails = emailFile.read().split()
+
+
 def validEmail(e):
     '''(str)->str
 
@@ -10,14 +14,19 @@ def validEmail(e):
     '''
     e = e.lower().replace(" ", "")
     if "@" and ".com" in e:
+        if e in emails:
+            print("Previous user")
+        else:
+            with open("emails.csv", "a") as emailFile:
+                emailFile.write(e)
         return ("Valid email")
     else:
         return ("Invalid email")
 
 
-def show_inventory(i):
-    with open('inventory.txt', 'r') as file:
-        inventory = file.read().split()
+def show_inventory():
+    with open('inventory.csv', 'r') as file:
+        i = file.read()
 
 
 def rent_price(price):
@@ -39,9 +48,8 @@ def add_tax():
 
 
 if __name__ == '__main__':
-    # user = input("Customer or Employee?").lower().strip()
-    userEmail = input("Enter your email address: ")
-    print(validEmail(userEmail))
-    userRent = input("What instrument would you like to rent?")
-    print(rent_price(userRent))
-    # print(rent_price(userRent))
+    user = input("Customer or Employee?").lower().strip()
+    if user == "customer":
+        userEmail = input("Enter your email address: ")
+        print(validEmail(userEmail))
+        whichInstrument = input("What instrument would you like to rent?")
