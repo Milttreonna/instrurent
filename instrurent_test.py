@@ -18,7 +18,17 @@ def test_validEmail_spaces():
     assert validEmail("person123 @email .com") == "Valid email"
 
 
-if __name__ == '__main__':
-    user = input("Customer or Employee?").lower().strip()
-    userEmail = input("Enter your email address: ")
-    print(validEmail(userEmail))
+def test_rent_total():
+    ''' '''
+
+
+def test_full_total():
+    ''' '''
+
+
+def rounded_total():
+    ''' '''
+
+
+def test_formatted_total():
+    ''' '''
