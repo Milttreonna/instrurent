@@ -1,4 +1,3 @@
-
 def validEmail(e):
     '''(str)->str
 
@@ -19,3 +18,10 @@ def validEmail(e):
 
 
 def rent_price(price):
+    ''' '''
+
+
+if __name__ == '__main__':
+    user = input("Customer or Employee?").lower().strip()
+    userEmail = input("Enter your email address: ")
+    print(validEmail(userEmail))
