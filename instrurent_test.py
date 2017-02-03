@@ -18,6 +18,19 @@ def test_validEmail_spaces():
     assert validEmail("person123 @email .com") == "Valid email"
 
 
+def test_rent_price():
+    assert rent_price(100) == 13.0
+    # assert rent_price(drums) == 118.3
+
+
+def test_rent_price_decimal():
+    assert rent_price(1342.30) == 174.5
+
+
+def test_add_tax():
+    ''''''
+
+
 def test_rent_total():
     ''' tests for rent_total '''
 

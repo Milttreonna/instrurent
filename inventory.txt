@@ -1,0 +1,10 @@
+clarinet:10
+drumSet:10
+electricPiano:10
+violin:10
+electricGuitar:10
+acousticGuitar:10
+banjo:10
+saxophone:10
+trumpet:10
+congaSet:10
