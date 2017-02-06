@@ -1,5 +1,7 @@
 with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()
+with open("inventory.csv", 'r') as inventoryFile:
+    inventory = inventoryFile.read().split()
 
 
 def validEmail(e):
@@ -35,11 +37,19 @@ def rent_price(price):
 
 def add_tax(rent):
     ''' '''
-
     tax = rent * .07
     rent += tax
     total = round(rent, 2)
     return total
+
+
+def format_total(total):
+    return "${0:.2f}".format(total)
+
+
+# make dict from inventory
+def inventory_dict():
+    ''' '''
 
 
 if __name__ == '__main__':

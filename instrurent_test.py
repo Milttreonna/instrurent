@@ -27,28 +27,17 @@ def test_rent_price_decimal():
 
 
 def test_add_tax():
-    assert add_tax(4.00) == 4.07
+    assert add_tax(4.00) == 4.28
 
 
 def test_add_tax_large():
     assert add_tax(534.99) == 572.44
 
 
-def test_add_tax():
-    ''''''
+def test_format_total_with_decimal():
+    assert format_total(810.98) == "$810.98"
 
 
-def test_rent_total():
-    ''' tests for rent_total '''
-
-
-def test_full_total():
+def test_format_total_without_decimal():
     ''' '''
-
-
-def rounded_total():
-    ''' '''
-
-
-def test_formatted_total():
-    ''' '''
+    assert format_total(5040) == "$5040.00"
