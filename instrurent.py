@@ -75,6 +75,34 @@ def show_inventory(inventory):
     return (show)
 
 
+def description():
+    '''returns price without tax and description of instrument the user wants to rent '''
+    if whichInstrument == "clarinet":
+        return ('\033[1m' + clarinet + '\033[0m' + "\nPrice to rent: " +
+                '\033[1m' + str(rent_price(clarinetCost)) + '\033[0m')
+
+    elif whichInstrument == "piano":
+        return ('\033[1m' + piano + '\033[0m')
+    elif whichInstrument == "violin":
+        return ('\033[1m' + violin + '\033[0m')
+    elif whichInstrument == "electric guitar":
+        return ('\033[1m' + eguitar + '\033[0m')
+    elif whichInstrument == "acoustic guitar":
+        return ('\033[1m' + aguitar + '\033[0m')
+    elif whichInstrument == "banjo":
+        return ('\033[1m' + banjo + '\033[0m')
+    elif whichInstrument == "trumpet":
+        return ('\033[1m' + trumpet + '\033[0m')
+    elif whichInstrument == "saxophone":
+        return ('\033[1m' + sax + '\033[0m')
+    elif "conga" in whichInstrument:
+        return ('\033[1m' + conga + '\033[0m')
+    elif "drum" in whichInstrument:
+        return ('\033[1m' + drums + '\033[0m')
+    else:
+        return ("Invalid answer.")
+
+
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     # print(inventory_dict(inventory))
@@ -85,6 +113,9 @@ if __name__ == '__main__':
         print(show_inventory(inventory))
         whichInstrument = input(
             "What instrument would you like to rent?\n").lower().strip()
+
+        print("\nDescription:")
+        print(description())
 
     elif user == "employee":
         print("Not Done")
