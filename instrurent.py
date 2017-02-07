@@ -1,5 +1,5 @@
 from openedFiles import *
-
+import sys
 clarinetCost = 1171.99
 drumCost = 910.00
 pianoCost = 1700.99
@@ -13,15 +13,7 @@ congaCost = 269.99
 
 
 def validEmail(e):
-    '''(str)->str
-
-    Takes user's email and checks to see if it's valid
-
-    >>>validEmail('person123@email.com')
-    'Valid email'
-    >>>validEmail('person123')
-    'Invalid email'
-    '''
+    '''Takes user's email and checks to see if it's valid or not'''
     e = e.lower().replace(" ", "")
     if "@" and ".com" in e:
         if e in emails:
@@ -36,16 +28,13 @@ def validEmail(e):
 
 
 def rent_price(price):
-    '''(str)->int
-
-    Takes the instrument's price and gets 13 percent of it
-     '''
+    '''Takes the instrument's price and gets 13 percent of it'''
     rent = round(price * .13, 2)
     return rent
 
 
 def add_tax(rent):
-    ''' '''
+    ''' Adds 7% sales tax to rent'''
     tax = rent * .07
     rent += tax
     total = round(rent, 2)
@@ -64,9 +53,8 @@ def inventory_dict(inventory):
 
 
 def show_inventory(inventory):
-    ''' Takes inventory file, splits it into two lists
-    (one for instrument name and the other for how many there are)
-    and returns the formatted version'''
+    ''' Takes inventory file, splits it into two lists (one for instrument name
+     and the other for how many there are) and returns the formatted version'''
     show = ''
     instruments = inventory[::2]
     quantity = inventory[1::2]
@@ -77,31 +65,154 @@ def show_inventory(inventory):
 
 def description():
     '''returns price without tax and description of instrument the user wants to rent '''
+    # print("\nDescription:")
     if whichInstrument == "clarinet":
-        return ('\033[1m' + clarinet + '\033[0m' + "\nPrice to rent: " +
-                '\033[1m' + str(rent_price(clarinetCost)) + '\033[0m')
-
+        return (get_customer_total(how_many_weeks(), clarinet_info()))
+        # return (clarinet_info())
     elif whichInstrument == "piano":
-        return ('\033[1m' + piano + '\033[0m')
+        return get_customer_total(how_many_weeks(), piano_info())
     elif whichInstrument == "violin":
-        return ('\033[1m' + violin + '\033[0m')
+        return get_customer_total(how_many_weeks(), violin_info())
     elif whichInstrument == "electric guitar":
-        return ('\033[1m' + eguitar + '\033[0m')
+        return get_customer_total(how_many_weeks(), eguitar_info())
     elif whichInstrument == "acoustic guitar":
-        return ('\033[1m' + aguitar + '\033[0m')
+        return get_customer_total(how_many_weeks(), aguitar_info())
     elif whichInstrument == "banjo":
-        return ('\033[1m' + banjo + '\033[0m')
+        return get_customer_total(how_many_weeks(), banjo_info())
     elif whichInstrument == "trumpet":
-        return ('\033[1m' + trumpet + '\033[0m')
+        return get_customer_total(how_many_weeks(), trumpet_info())
     elif whichInstrument == "saxophone":
-        return ('\033[1m' + sax + '\033[0m')
+        return get_customer_total(how_many_weeks(), sax_info())
     elif "conga" in whichInstrument:
-        return ('\033[1m' + conga + '\033[0m')
+        return get_customer_total(how_many_weeks(), conga_info())
     elif "drum" in whichInstrument:
-        return ('\033[1m' + drums + '\033[0m')
+        return get_customer_total(how_many_weeks(), drum_info())
     else:
         return ("Invalid answer.")
 
+
+def clarinet_info():
+    ''' returns information about the clarinets'''
+    customerTotal = ""
+    customerTotal += str(rent_price(clarinetCost))
+
+    print('\033[1m' + clarinet + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              clarinetCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def piano_info():
+    ''' returns information about the pianos'''
+    customerTotal = ""
+    customerTotal += str(rent_price(pianoCost))
+    print('\033[1m' + piano + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              pianoCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def violin_info():
+    ''' returns information about the violins'''
+    customerTotal = ""
+    customerTotal += str(rent_price(violinCost))
+    print('\033[1m' + violin + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              violinCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def eguitar_info():
+    '''returns information about the electric guitars '''
+    customerTotal = ""
+    customerTotal += str(rent_price(eguitarCost))
+    print('\033[1m' + eguitar + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              eguitarCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def aguitar_info():
+    '''returns information about the acoustic guitars '''
+    customerTotal = ""
+    customerTotal += str(rent_price(aguitarCost))
+    print('\033[1m' + aguitar + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              aguitarCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def banjo_info():
+    '''returns information about the banjos '''
+    customerTotal = ""
+    customerTotal += str(rent_price(banjoCost))
+    print('\033[1m' + banjo + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              banjoCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def trumpet_info():
+    ''' returns information about the trumpets'''
+    customerTotal = ""
+    customerTotal += str(rent_price(trumpetCost))
+    print('\033[1m' + trumpet + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              trumpetCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def sax_info():
+    ''' returns information about the saxophones'''
+    customerTotal = ""
+    customerTotal += str(rent_price(saxCost))
+    print('\033[1m' + sax + '\033[0m' + "\nPrice to rent (tax not included): "
+          + '\033[1m' + str(rent_price(saxCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def conga_info():
+    ''' returns information about the conga sets'''
+    customerTotal = ""
+    customerTotal += str(rent_price(congaCost))
+    print('\033[1m' + conga + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              congaCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def drum_info():
+    '''returns information about the drum sets '''
+    customerTotal = ""
+    customerTotal += str(rent_price(drumCost))
+    print('\033[1m' + drums + '\033[0m' +
+          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
+              drumCost)) + '\033[0m')
+    return float(customerTotal)
+
+
+def how_many_weeks():
+    weeks = ""
+    for l in (range(4)):
+        rentTime = int(input(
+            "How many weeks would you like to rent it?(1-3 only)\n"))
+        weeks += str(rentTime)
+        if rentTime <= 3:
+            break
+    return int(weeks)
+
+
+def get_customer_total(weeks, item):
+    item = add_tax(item)
+    total = item * weeks
+    print("You're complete total will be:")
+    return (format_total(total))
+
+
+def confirm():
+    if confirm =="confirm":
+
+    elif confirm=="cancel":
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
@@ -113,9 +224,8 @@ if __name__ == '__main__':
         print(show_inventory(inventory))
         whichInstrument = input(
             "What instrument would you like to rent?\n").lower().strip()
-
-        print("\nDescription:")
         print(description())
+        confirm = input("Confirm or cancel?")
 
     elif user == "employee":
         print("Not Done")
