@@ -64,7 +64,7 @@ def show_inventory(inventory):
 
 
 def description():
-    '''returns price without tax and description of instrument the user wants to rent '''
+    '''returns the complete total and description of the instrument the user wants to rent '''
     # print("\nDescription:")
     if whichInstrument == "clarinet":
         return (get_customer_total(how_many_weeks(), clarinet_info()))
@@ -192,6 +192,8 @@ def drum_info():
 
 
 def how_many_weeks():
+    '''asks the user how many weeks they would like to rent out the instrument
+    and returns it '''
     weeks = ""
     for l in (range(4)):
         rentTime = int(input(
@@ -203,16 +205,18 @@ def how_many_weeks():
 
 
 def get_customer_total(weeks, item):
+    '''takes the price to rent the instrument, adds tax to it and multiplies it
+    by the number of weeks the user would like to rent it out '''
     item = add_tax(item)
     total = item * weeks
     print("You're complete total will be:")
     return (format_total(total))
 
-
-def confirm():
-    if confirm =="confirm":
-
-    elif confirm=="cancel":
+#
+# def confirm():
+#     if confirm =="confirm":
+#
+#     elif confirm=="cancel":
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
