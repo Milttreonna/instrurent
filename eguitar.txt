@@ -1,0 +1,58 @@
+Body Type
+Solidbody
+
+Body Shape
+Eclipse
+
+Right-handed
+
+Number of Strings
+6
+
+Body Material
+Mahogany
+
+Color
+Vintage Black
+
+Neck Material
+Mahogany, set-in
+
+Neck Shape
+Thin "U"
+
+Fingerboard Material
+Rosewood
+
+Number of Frets
+24, extra-jumbo
+
+Scale Length
+24.75"
+
+Nut Width
+1.65"
+
+Nut Material
+Molded
+
+Bridge/Tailpiece
+Tonepros locking TOM bridge and tailpiece
+
+Tuners
+Locking tuners
+
+Number of Pickups
+2
+
+Neck Pickup
+Seymour Duncan '59 Humbucker
+
+Bridge Pickup
+Seymour Duncan JB Humbucker
+
+Controls
+2 x volume, master tone, 3-way selector
+
+Strings
+(.010-.046)

@@ -1,7 +1,4 @@
-with open("emails.csv", "r") as emailFile:
-    emails = emailFile.read().split()
-with open("inventory.csv", 'r') as inventoryFile:
-    inventory = inventoryFile.read().split()
+from openedFiles import *
 
 
 def validEmail(e):
@@ -17,12 +14,12 @@ def validEmail(e):
     e = e.lower().replace(" ", "")
     if "@" and ".com" in e:
         if e in emails:
-            print("Previous user")
+            return ("Previous user")
         else:
             print("New user")
             with open("emails.csv", "a") as emailFile:
                 emailFile.write(e + '\n')
-        return ("Valid email")
+            return ("Valid email")
     else:
         return ("Invalid email")
 
@@ -73,6 +70,12 @@ if __name__ == '__main__':
     if user == "customer":
         userEmail = input("Enter your email address: ")
         print(validEmail(userEmail))
-        print("Here's our inventory:")
+        print("\nHere's our inventory:")
         print(show_inventory(inventory))
-        whichInstrument = input("What instrument would you like to rent?")
+        whichInstrument = input(
+            "What instrument would you like to rent?\n").lower().strip()
+
+    elif user == "employee":
+        print("Not Done")
+    else:
+        print("Invalid. Try again.")
