@@ -85,7 +85,7 @@ def show_inventory():
     ''' Returns the formatted version of the inventory'''
     show = ''
     for i, q in zip(instruments, quantity):
-        show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
+        show += ('\033[1m' + i + q + '\033[0m' + "\n")
     return (show)
 
 
@@ -267,22 +267,23 @@ def get_customer_total(weeks, item):
 #
 
 if __name__ == '__main__':
+    print(inventory)
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         userEmail = input("Enter your email address: ")
         print(validEmail(userEmail))
-        # print(inventory_dict(inventory))
         print("\nHere's our inventory:")
         print(show_inventory())
         whichInstrument = input(
             "What instrument would you like to rent?\n").lower().strip()
         print(description())
-        # print(quantity)
         confirm = input("Confirm or cancel?").lower().strip()
         if confirm == "confirm":
             with open("transactions.txt", "a") as transactionFile:
-                inventoryFile.write(str(userInfo_lst))
-            print(userInfo_lst)
+                transactionFile.write(str(userInfo_lst))
+            # with open("inventory.csv", 'w') as inventoryFile:
+            #     inventoryFile.write(str(dict))
+            print("Confirmed")
         elif confirm == "cancel":
             print("Canceling . . .")
             sys.exit()
