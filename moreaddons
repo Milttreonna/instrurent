@@ -1,92 +1,5 @@
-from openedFiles import *
-import sys
-import datetime
-import pickle
-now = datetime.datetime.now()
-
-clarinetCost = 1171.99
-drumCost = 910.00
-pianoCost = 1700.99
-violinCost = 699.99
-eguitarCost = 899.99
-aguitarCost = 439.99
-banjoCost = 479.00
-saxCost = 3153.99
-trumpetCost = 2438.99
-congaCost = 269.99
-userInfo_lst = []
-
-# email = input("What's your email?")
-# userInfo_lst.append(email)
-#
-# whatwant = input("What do you want?")
-#
-# sq_dict = {}
-#
-# sq_dict["instrument"] = whatwant
-# userInfo_lst.append(sq_dict)
-# print(userInfo_lst)
-#
-# print(dict)
-#
-# print(dict.keys())
-# print(dict.values())
-# if "Clarinet" in dict:
-#     dict['Clarinet'] = int(dict["Clarinet"]) - 1
-# print(dict)
 
 
-def validEmail(e):
-    '''Takes user's email and checks to see if it's valid or not'''
-    e = e.lower().replace(" ", "")
-    date_dict = {}
-    if "@" and ".com" in e:
-
-        if e in emails:
-            userInfo_lst.append(e)
-            date_dict["Date"] = (
-                str(now.month) + "-" + str(now.day) + "-" + str(now.year))
-            userInfo_lst.append(date_dict)
-            return ("Previous user")
-
-        else:
-            print("New user")
-            with open("emails.csv", "a") as emailFile:
-                emailFile.write(e + '\n')
-            userInfo_lst.append(e)
-            date_dict["Date"] = (
-                str(now.month) + "-" + str(now.day) + "-" + str(now.year))
-            userInfo_lst.append(date_dict)
-            return ("Valid email")
-
-    else:
-        return ("Invalid email")
-
-
-def rent_price(price):
-    '''Takes the instrument's price and gets 13 percent of it'''
-    rent = round(price * .13, 2)
-    return rent
-
-
-def add_tax(rent):
-    ''' Adds 7% sales tax to rent'''
-    tax = rent * .07
-    rent += tax
-    total = round(rent, 2)
-    return total
-
-
-def format_total(total):
-    return "${0:.2f}".format(total)
-
-
-def show_inventory():
-    ''' Returns the formatted version of the inventory'''
-    show = ''
-    for i, q in zip(instruments, quantity):
-        show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
-    return (show)
 
 
 def description():
@@ -245,8 +158,8 @@ def how_many_weeks():
         weeks += str(rentTime)
         if rentTime <= 3:
             break
-    week_dict = {}
-    week_dict["Weeks rented"] = rentTime
+    week_dict={}
+    week_dict["Weeks rented"]=rentTime
     userInfo_lst.append(week_dict)
     return int(weeks)
 
@@ -256,43 +169,8 @@ def get_customer_total(weeks, item):
     by the number of weeks the user would like to rent it out '''
     item = add_tax(item)
     total = item * weeks
-    total_dict = {}
-    total_dict["Total"] = (format_total(total))
+    total_dict={}
+    total_dict["Total"]=(format_total(total))
     userInfo_lst.append(total_dict)
     print("You're complete total will be:")
     return (format_total(total))
-
-# def write_to_inventory(dictionary):
-#     '''writes new info to inventory '''
-#
-
-
-def confirm():
-    with open("transactions.txt", "w") as transactionFile:
-        inventoryFile.write(str(userInfo_lst))
-
-
-if __name__ == '__main__':
-    user = input("Customer or Employee?").lower().strip()
-    if user == "customer":
-        userEmail = input("Enter your email address: ")
-        print(validEmail(userEmail))
-        # print(inventory_dict(inventory))
-        print("\nHere's our inventory:")
-        print(show_inventory())
-        whichInstrument = input(
-            "What instrument would you like to rent?\n").lower().strip()
-        print(description())
-        # print(quantity)
-        confirm = input("Confirm or cancel?").lower().strip()
-        if confirm == "confirm":
-            confirm_trans()
-            print(userInfo_lst)
-        elif confirm == "cancel":
-            print("Canceling . . .")
-            sys.exit()
-    elif user == "employee":
-        print("nothing")
-    else:
-        print("Invalid. Try again.")
-        sys.exit()

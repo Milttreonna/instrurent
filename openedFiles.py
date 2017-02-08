@@ -2,6 +2,10 @@ with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()
 with open("inventory.csv", 'r') as inventoryFile:
     inventory = inventoryFile.read().split()
+    dict = {inventory[line]: inventory[line + 1]
+            for line in range(0, len(inventory), 2)}
+    quantity = inventory[1::2]
+    instruments = inventory[::2]
 with open("clarinet.txt", 'r') as clarinetFile:
     clarinet = clarinetFile.read()
 with open("drums.txt", 'r') as drumFile:
