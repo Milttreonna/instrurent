@@ -266,12 +266,6 @@ def get_customer_total(weeks, item):
 #     '''writes new info to inventory '''
 #
 
-
-def confirm_trans():
-    with open("transactions.txt", "w") as transactionFile:
-        inventoryFile.write(str(userInfo_lst))
-
-
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
@@ -286,7 +280,8 @@ if __name__ == '__main__':
         # print(quantity)
         confirm = input("Confirm or cancel?").lower().strip()
         if confirm == "confirm":
-            confirm_trans()
+            with open("transactions.txt", "a") as transactionFile:
+                inventoryFile.write(str(userInfo_lst))
             print(userInfo_lst)
         elif confirm == "cancel":
             print("Canceling . . .")
