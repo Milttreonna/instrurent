@@ -267,7 +267,7 @@ def get_customer_total(weeks, item):
 #
 
 
-def confirm():
+def confirm_trans():
     with open("transactions.txt", "w") as transactionFile:
         inventoryFile.write(str(userInfo_lst))
 
