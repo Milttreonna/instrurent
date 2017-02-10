@@ -266,7 +266,7 @@ def confirm_trans():
         return ("Invalid.")
 
 
-def main():
+if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         userEmail = input("Enter your email address: ")
@@ -285,7 +285,3 @@ def main():
     else:
         print("Invalid. Try again.")
         sys.exit()
-
-
-if __name__ == '__main__':
-    main()
