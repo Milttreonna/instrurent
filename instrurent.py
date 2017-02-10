@@ -2,15 +2,17 @@ from openedFiles import *
 import sys
 
 
-def validEmail(e):
+def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
-    e = e.lower().replace(" ", "")
-    date_dict = {}
-    if "@" and ".com" in e:
+    print("Enter Q to quit\n")
+    userEmail = input("Enter your email address: ")
+    userEmail = userEmail.lower().replace(" ", "")
 
-        if e in emails:
+    if "@" and ".com" in userEmail:
+
+        if userEmail in emails:
             #adds email to user's info
-            userInfo_lst.append(e)
+            userInfo_lst.append(userEmail)
             #adds date to user's info
             date_dict["Date"] = (
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
@@ -21,16 +23,18 @@ def validEmail(e):
             print("New user")
             #writes the user's email to the email file
             with open("emails.csv", "a") as emailFile:
-                emailFile.write(e + '\n')
-            userInfo_lst.append(e)
+                emailFile.write(userEmail + '\n')
+            userInfo_lst.append(userEmail)
             date_dict["Date"] = (
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
             userInfo_lst.append(date_dict)
             return ("Valid email")
-
+    elif userEmail == "q":
+        print("Canceling. . . ")
+        sys.exit()
     else:
         print("Invalid email")
-        sys.exit()
+        return validEmail()
 
 
 def rent_price(price):
@@ -62,7 +66,7 @@ def show_inventory():
 
 def description():
     '''returns the complete total and description of the instrument the user wants to rent '''
-    item_dict = {}
+
     whichInstrument = input("What instrument would you like to rent?\n").lower(
     ).strip()
     if whichInstrument == "clarinet":
@@ -130,6 +134,9 @@ def description():
         userInfo_lst.append(item_dict)
         dict['DrumSet'] = int(dict["DrumSet"]) - 1
         return get_customer_total(how_many_weeks(), drum_info())
+    elif whichInstrument == "q":
+        print("Canceling. . .")
+        sys.exit()
     else:
         print("Invalid answer")
         return description()
@@ -235,7 +242,7 @@ def how_many_weeks():
         weeks += str(rentTime)
         if rentTime <= 3:
             break
-    week_dict = {}
+
     week_dict["Weeks rented"] = rentTime
     userInfo_lst.append(week_dict)
     return int(weeks)
@@ -246,7 +253,7 @@ def get_customer_total(weeks, item):
     by the number of weeks the user would like to rent it out '''
     item = add_tax(item)
     total = item * weeks
-    total_dict = {}
+
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
     print("You're complete total will be:")
@@ -271,12 +278,13 @@ def confirm_trans():
         print("Invalid.")
         sys.exit()
 
+# def return():
+#     whatItem=input("What item did you rent out?")
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
-        userEmail = input("Enter your email address: ")
-        print(validEmail(userEmail))
+        print(validEmail())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
         customerChoice = input("What would you like to do?")

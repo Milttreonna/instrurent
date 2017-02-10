@@ -1,6 +1,10 @@
 import datetime
 now = datetime.datetime.now()
 userInfo_lst = []
+item_dict = {}
+total_dict = {}
+week_dict = {}
+date_dict = {}
 clarinetCost = 1171.99
 drumCost = 910.00
 pianoCost = 1700.99
