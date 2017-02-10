@@ -1,10 +1,6 @@
 import datetime
+
 now = datetime.datetime.now()
-userInfo_lst = []
-item_dict = {}
-total_dict = {}
-week_dict = {}
-date_dict = {}
 clarinetCost = 1171.99
 drumCost = 910.00
 pianoCost = 1700.99
@@ -15,6 +11,11 @@ banjoCost = 479.00
 saxCost = 3153.99
 trumpetCost = 2438.99
 congaCost = 269.99
+userInfo_lst = []
+item_dict = {}
+total_dict = {}
+week_dict = {}
+date_dict = {}
 
 with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()
