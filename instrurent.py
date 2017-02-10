@@ -1,7 +1,7 @@
 from openedFiles import *
 import sys
-import datetime
-import pickle
+
+# import datetime
 
 
 def validEmail(e):
@@ -31,8 +31,7 @@ def validEmail(e):
             return ("Valid email")
 
     else:
-        print("Invalid email")
-        sys.exit()
+        return ("Invalid email")
 
 
 def rent_price(price):
@@ -41,11 +40,11 @@ def rent_price(price):
     return rent
 
 
-def add_tax(rent):
+def add_tax(p):
     ''' Adds 7% sales tax to rent and returns the total'''
-    tax = rent * .07
-    rent += tax
-    total = round(rent, 2)
+    tax = p * .07
+    p += tax
+    total = round(p, 2)
     return total
 
 
@@ -131,8 +130,7 @@ def description():
         dict['DrumSet'] = int(dict["DrumSet"]) - 1
         return get_customer_total(how_many_weeks(), drum_info())
     else:
-        print("Invalid answer")
-        sys.exit()
+        return ("Invalid answer")
 
 
 def clarinet_info():
@@ -265,24 +263,12 @@ def confirm_trans():
             inventoryFile.write(output)
         return ("Confirmed")
     elif confirm == "cancel":
-        print("Canceling . . .")
-        sys.exit()
+        return ("Canceling . . .")
+    else:
+        return ("Invalid.")
 
 
 if __name__ == '__main__':
-    now = datetime.datetime.now()
-    userInfo_lst = []
-    clarinetCost = 1171.99
-    drumCost = 910.00
-    pianoCost = 1700.99
-    violinCost = 699.99
-    eguitarCost = 899.99
-    aguitarCost = 439.99
-    banjoCost = 479.00
-    saxCost = 3153.99
-    trumpetCost = 2438.99
-    congaCost = 269.99
-
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         userEmail = input("Enter your email address: ")
