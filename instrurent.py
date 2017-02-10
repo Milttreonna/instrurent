@@ -278,8 +278,10 @@ def confirm_trans():
         print("Invalid.")
         sys.exit()
 
-def return():
-    whatItem=input("What item did you rent out?")
+
+def return_item():
+    whatItem = input("What item did you rent out?")
+
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
