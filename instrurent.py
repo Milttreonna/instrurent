@@ -1,8 +1,6 @@
 from openedFiles import *
 import sys
 
-# import datetime
-
 
 def validEmail(e):
     '''Takes user's email and checks to see if it's valid or not'''
