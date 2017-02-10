@@ -1,17 +1,3 @@
-import datetime
-now = datetime.datetime.now()
-userInfo_lst = []
-clarinetCost = 1171.99
-drumCost = 910.00
-pianoCost = 1700.99
-violinCost = 699.99
-eguitarCost = 899.99
-aguitarCost = 439.99
-banjoCost = 479.00
-saxCost = 3153.99
-trumpetCost = 2438.99
-congaCost = 269.99
-
 with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()
 with open("inventory.csv", 'r') as inventoryFile:
