@@ -60,7 +60,8 @@ def validEmail(e):
             return ("Valid email")
 
     else:
-        return ("Invalid email")
+        print("Invalid email")
+        sys.exit()
 
 
 def rent_price(price):
@@ -94,6 +95,7 @@ def description():
     # print("\nDescription:")
     if whichInstrument == "clarinet":
         dict['Clarinet'] = int(dict["Clarinet"]) - 1
+
         return (get_customer_total(how_many_weeks(), clarinet_info()))
 
     elif whichInstrument == "piano":
@@ -132,7 +134,8 @@ def description():
         dict['DrumSet'] = int(dict["DrumSet"]) - 1
         return get_customer_total(how_many_weeks(), drum_info())
     else:
-        return ("Invalid answer.")
+        print("Invalid answer")
+        sys.exit()
 
 
 def clarinet_info():
@@ -230,8 +233,8 @@ def drum_info():
     customerTotal = ""
     customerTotal += str(rent_price(drumCost))
     print('\033[1m' + drums + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              drumCost)) + '\033[0m')
+          "\nPrice to rent (per week, tax not included): " + '\033[1m' + str(
+              rent_price(drumCost)) + '\033[0m')
     return float(customerTotal)
 
 
@@ -279,8 +282,8 @@ if __name__ == '__main__':
         print(description())
         confirm = input("Confirm or cancel?").lower().strip()
         if confirm == "confirm":
-            with open("transactions.txt", "a") as transactionFile:
-                transactionFile.write(str(userInfo_lst))
+            with open("transactions.csv", "a") as transactionFile:
+                transactionFile.write(str(userInfo_lst) + '\n')
             # with open("inventory.csv", 'w') as inventoryFile:
             #     inventoryFile.write(str(dict))
             print("Confirmed")

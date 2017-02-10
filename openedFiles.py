@@ -6,7 +6,7 @@ with open("inventory.csv", 'r') as inventoryFile:
             for line in range(0, len(inventory), 2)}
     quantity = inventory[1::2]
     instruments = inventory[::2]
-with open("transactions.txt", 'r') as transactionFile:
+with open("transactions.csv", 'r') as transactionFile:
     transactionhistory = transactionFile.read()
 with open("clarinet.txt", 'r') as clarinetFile:
     clarinet = clarinetFile.read()
