@@ -168,101 +168,90 @@ def description():
 
 def clarinet_info():
     ''' returns information about the clarinets'''
-    customerTotal = ""
-    customerTotal += str(rent_price(clarinetCost))
-
+    customerTotal = str(rent_price(clarinetCost))
     print('\033[1m' + clarinet + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              clarinetCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def piano_info():
     ''' returns information about the pianos'''
-    customerTotal = ""
-    customerTotal += str(rent_price(pianoCost))
+    customerTotal = str(rent_price(pianoCost))
     print('\033[1m' + piano + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              pianoCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def violin_info():
     ''' returns information about the violins'''
-    customerTotal = ""
-    customerTotal += str(rent_price(violinCost))
+    customerTotal = str(rent_price(violinCost))
     print('\033[1m' + violin + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              violinCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def eguitar_info():
     '''returns information about the electric guitars '''
-    customerTotal = ""
-    customerTotal += str(rent_price(eguitarCost))
+    customerTotal = str(rent_price(eguitarCost))
     print('\033[1m' + eguitar + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              eguitarCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def aguitar_info():
     '''returns information about the acoustic guitars '''
-    customerTotal = ""
-    customerTotal += str(rent_price(aguitarCost))
+    customerTotal = str(rent_price(aguitarCost))
     print('\033[1m' + aguitar + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              aguitarCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def banjo_info():
     '''returns information about the banjos '''
-    customerTotal = ""
-    customerTotal += str(rent_price(banjoCost))
+    customerTotal = str(rent_price(banjoCost))
     print('\033[1m' + banjo + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              banjoCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def trumpet_info():
     ''' returns information about the trumpets'''
-    customerTotal = ""
-    customerTotal += str(rent_price(trumpetCost))
+    customerTotal = str(rent_price(trumpetCost))
     print('\033[1m' + trumpet + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              trumpetCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def sax_info():
     ''' returns information about the saxophones'''
-    customerTotal = ""
-    customerTotal += str(rent_price(saxCost))
+    customerTotal = str(rent_price(saxCost))
     print('\033[1m' + sax + '\033[0m' + "\nPrice to rent (tax not included): "
-          + '\033[1m' + str(rent_price(saxCost)) + '\033[0m')
+          + '\033[1m' + customerTotal + '\033[0m')
     return float(customerTotal)
 
 
 def conga_info():
     ''' returns information about the conga sets'''
-    customerTotal = ""
-    customerTotal += str(rent_price(congaCost))
+    customerTotal = str(rent_price(congaCost))
     print('\033[1m' + conga + '\033[0m' +
-          "\nPrice to rent (tax not included): " + '\033[1m' + str(rent_price(
-              congaCost)) + '\033[0m')
+          "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
+          '\033[0m')
     return float(customerTotal)
 
 
 def drum_info():
     '''returns information about the drum sets '''
-    customerTotal = ""
-    customerTotal += str(rent_price(drumCost))
+    customerTotal = str(rent_price(drumCost))
     print('\033[1m' + drums + '\033[0m' +
-          "\nPrice to rent (per week, tax not included): " + '\033[1m' + str(
-              rent_price(drumCost)) + '\033[0m')
+          "\nPrice to rent (per week, tax not included): " + '\033[1m' +
+          customerTotal + '\033[0m')
     return float(customerTotal)
 
 
