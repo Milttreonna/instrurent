@@ -90,15 +90,15 @@ def show_inventory():
     ''' Returns the formatted inventory in a different color'''
     show = ''
     for i, q in zip(instruments, quantity):
-        show += ('\033[1m' + i + q + '\033[0m' + "\n")
+        show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
     return (show)
 
 
 def description():
     '''returns the complete total and description of the instrument the user wants to rent '''
-    print("\nDescription:")
     item_dict = {}
     if whichInstrument == "clarinet":
+
         #subtracts one of the Clarinets from the inventory dictionary, but
         #doesn't write to the inventory file
         dict['Clarinet'] = int(dict["Clarinet"]) - 1
@@ -106,6 +106,7 @@ def description():
         # writes what item the user is renting/buying to their info
         item_dict["Item"] = "Clarinet"
         userInfo_lst.append(item_dict)
+
         return (get_customer_total(how_many_weeks(), clarinet_info()))
 
     elif whichInstrument == "piano":
@@ -283,12 +284,8 @@ def get_customer_total(weeks, item):
     print("You're complete total will be:")
     return (format_total(total))
 
-# def write_to_inventory(dictionary):
-#     '''writes new info to inventory '''
-#
 
 if __name__ == '__main__':
-    print(inventory)
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         userEmail = input("Enter your email address: ")
@@ -302,8 +299,11 @@ if __name__ == '__main__':
         if confirm == "confirm":
             with open("transactions.csv", "a") as transactionFile:
                 transactionFile.write(str(userInfo_lst) + '\n')
-            # with open("inventory.csv", 'w') as inventoryFile:
-            #     inventoryFile.write(str(dict))
+            with open("inventory.csv", 'w') as inventoryFile:
+                output = ''
+                for d in dict:
+                    output += d + " " + str(dict[d]) + "\n"
+                inventoryFile.write(output)
             print("Confirmed")
         elif confirm == "cancel":
             print("Canceling . . .")
