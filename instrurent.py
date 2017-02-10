@@ -16,25 +16,6 @@ trumpetCost = 2438.99
 congaCost = 269.99
 userInfo_lst = []
 
-# email = input("What's your email?")
-# userInfo_lst.append(email)
-#
-# whatwant = input("What do you want?")
-#
-# sq_dict = {}
-#
-# sq_dict["instrument"] = whatwant
-# userInfo_lst.append(sq_dict)
-# print(userInfo_lst)
-#
-# print(dict)
-#
-# print(dict.keys())
-# print(dict.values())
-# if "Clarinet" in dict:
-#     dict['Clarinet'] = int(dict["Clarinet"]) - 1
-# print(dict)
-
 
 def validEmail(e):
     '''Takes user's email and checks to see if it's valid or not'''
@@ -285,6 +266,22 @@ def get_customer_total(weeks, item):
     return (format_total(total))
 
 
+def confirm_trans():
+    confirm = input("Confirm or cancel?").lower().strip()
+    if confirm == "confirm":
+        with open("transactions.csv", "a") as transactionFile:
+            transactionFile.write(str(userInfo_lst) + '\n')
+        with open("inventory.csv", 'w') as inventoryFile:
+            output = ''
+            for d in dict:
+                output += d + " " + str(dict[d]) + "\n"
+            inventoryFile.write(output)
+        return ("Confirmed")
+    elif confirm == "cancel":
+        print("Canceling . . .")
+        sys.exit()
+
+
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
@@ -295,19 +292,7 @@ if __name__ == '__main__':
         whichInstrument = input(
             "What instrument would you like to rent?\n").lower().strip()
         print(description())
-        confirm = input("Confirm or cancel?").lower().strip()
-        if confirm == "confirm":
-            with open("transactions.csv", "a") as transactionFile:
-                transactionFile.write(str(userInfo_lst) + '\n')
-            with open("inventory.csv", 'w') as inventoryFile:
-                output = ''
-                for d in dict:
-                    output += d + " " + str(dict[d]) + "\n"
-                inventoryFile.write(output)
-            print("Confirmed")
-        elif confirm == "cancel":
-            print("Canceling . . .")
-            sys.exit()
+        print(confirm_trans())
     elif user == "employee":
         print("nothing")
     else:
