@@ -43,7 +43,9 @@ def validEmail(e):
     if "@" and ".com" in e:
 
         if e in emails:
+            #adds email to user's info
             userInfo_lst.append(e)
+            #adds date to user's info
             date_dict["Date"] = (
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
             userInfo_lst.append(date_dict)
@@ -51,6 +53,7 @@ def validEmail(e):
 
         else:
             print("New user")
+            #writes the user's email to the email file
             with open("emails.csv", "a") as emailFile:
                 emailFile.write(e + '\n')
             userInfo_lst.append(e)
@@ -71,7 +74,7 @@ def rent_price(price):
 
 
 def add_tax(rent):
-    ''' Adds 7% sales tax to rent'''
+    ''' Adds 7% sales tax to rent and returns the total'''
     tax = rent * .07
     rent += tax
     total = round(rent, 2)
@@ -79,11 +82,12 @@ def add_tax(rent):
 
 
 def format_total(total):
+    '''Returns formatted total '''
     return "${0:.2f}".format(total)
 
 
 def show_inventory():
-    ''' Returns the formatted version of the inventory'''
+    ''' Returns the formatted inventory in a different color'''
     show = ''
     for i, q in zip(instruments, quantity):
         show += ('\033[1m' + i + q + '\033[0m' + "\n")
@@ -92,45 +96,69 @@ def show_inventory():
 
 def description():
     '''returns the complete total and description of the instrument the user wants to rent '''
-    # print("\nDescription:")
+    print("\nDescription:")
+    item_dict = {}
     if whichInstrument == "clarinet":
+        #subtracts one of the Clarinets from the inventory dictionary, but
+        #doesn't write to the inventory file
         dict['Clarinet'] = int(dict["Clarinet"]) - 1
 
+        # writes what item the user is renting/buying to their info
+        item_dict["Item"] = "Clarinet"
+        userInfo_lst.append(item_dict)
         return (get_customer_total(how_many_weeks(), clarinet_info()))
 
     elif whichInstrument == "piano":
+        item_dict["Item"] = "Piano"
+        userInfo_lst.append(item_dict)
         dict['Piano'] = int(dict["Piano"]) - 1
         return get_customer_total(how_many_weeks(), piano_info())
 
     elif whichInstrument == "violin":
+        item_dict["Item"] = "Violin"
+        userInfo_lst.append(item_dict)
         dict['Violin'] = int(dict["Violin"]) - 1
         return get_customer_total(how_many_weeks(), violin_info())
 
     elif whichInstrument == "electric guitar":
+        item_dict["Item"] = "Electric guitar"
+        userInfo_lst.append(item_dict)
         dict['ElectricGuitar'] = int(dict["ElectricGuitar"]) - 1
         return get_customer_total(how_many_weeks(), eguitar_info())
 
     elif whichInstrument == "acoustic guitar":
+        item_dict["Item"] = "Acoustic Guitar"
+        userInfo_lst.append(item_dict)
         dict['AcousticGuitar'] = int(dict["AcousticGuitar"]) - 1
         return get_customer_total(how_many_weeks(), aguitar_info())
 
     elif whichInstrument == "banjo":
+        item_dict["Item"] = "Banjo"
+        userInfo_lst.append(item_dict)
         dict['Banjo'] = int(dict["Banjo"]) - 1
         return get_customer_total(how_many_weeks(), banjo_info())
 
     elif whichInstrument == "trumpet":
+        item_dict["Item"] = "Trumpet"
+        userInfo_lst.append(item_dict)
         dict['Trumpet'] = int(dict["Trumpet"]) - 1
         return get_customer_total(how_many_weeks(), trumpet_info())
 
     elif whichInstrument == "saxophone":
+        item_dict["Item"] = "Saxophone"
+        userInfo_lst.append(item_dict)
         dict['Saxophone'] = int(dict["Saxophone"]) - 1
         return get_customer_total(how_many_weeks(), sax_info())
 
     elif "conga" in whichInstrument:
+        item_dict["Item"] = "Conga Set"
+        userInfo_lst.append(item_dict)
         dict['CongaSet'] = int(dict["CongaSet"]) - 1
         return get_customer_total(how_many_weeks(), conga_info())
 
     elif "drum" in whichInstrument:
+        item_dict["Item"] = "Drum set"
+        userInfo_lst.append(item_dict)
         dict['DrumSet'] = int(dict["DrumSet"]) - 1
         return get_customer_total(how_many_weeks(), drum_info())
     else:
