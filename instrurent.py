@@ -29,7 +29,8 @@ def validEmail(e):
             return ("Valid email")
 
     else:
-        return ("Invalid email")
+        print("Invalid email")
+        sys.exit()
 
 
 def rent_price(price):
@@ -62,6 +63,8 @@ def show_inventory():
 def description():
     '''returns the complete total and description of the instrument the user wants to rent '''
     item_dict = {}
+    whichInstrument = input("What instrument would you like to rent?\n").lower(
+    ).strip()
     if whichInstrument == "clarinet":
 
         #subtracts one of the Clarinets from the inventory dictionary, but
@@ -128,7 +131,8 @@ def description():
         dict['DrumSet'] = int(dict["DrumSet"]) - 1
         return get_customer_total(how_many_weeks(), drum_info())
     else:
-        return ("Invalid answer")
+        print("Invalid answer")
+        return description()
 
 
 def clarinet_info():
@@ -261,9 +265,11 @@ def confirm_trans():
             inventoryFile.write(output)
         return ("Confirmed")
     elif confirm == "cancel":
-        return ("Canceling . . .")
+        print("Canceling . . .")
+        sys.exit()
     else:
-        return ("Invalid.")
+        print("Invalid.")
+        sys.exit()
 
 
 if __name__ == '__main__':
@@ -276,8 +282,7 @@ if __name__ == '__main__':
         customerChoice = input("What would you like to do?")
         print("\nHere's our inventory:")
         print(show_inventory())
-        whichInstrument = input(
-            "What instrument would you like to rent?\n").lower().strip()
+
         print(description())
         print(confirm_trans())
     elif user == "employee":
