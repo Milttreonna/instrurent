@@ -266,11 +266,14 @@ def confirm_trans():
         return ("Invalid.")
 
 
-if __name__ == '__main__':
+def main():
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         userEmail = input("Enter your email address: ")
         print(validEmail(userEmail))
+        print(
+            "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
+        customerChoice = input("What would you like to do?")
         print("\nHere's our inventory:")
         print(show_inventory())
         whichInstrument = input(
@@ -282,3 +285,7 @@ if __name__ == '__main__':
     else:
         print("Invalid. Try again.")
         sys.exit()
+
+
+if __name__ == '__main__':
+    main()
