@@ -167,8 +167,9 @@ def description():
 
 
 def clarinet_info():
-    ''' returns information about the clarinets'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(clarinetCost))
+    #prints info about the item
     print('\033[1m' + clarinet + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
           '\033[0m')
@@ -176,7 +177,7 @@ def clarinet_info():
 
 
 def piano_info():
-    ''' returns information about the pianos'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(pianoCost))
     print('\033[1m' + piano + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -185,7 +186,7 @@ def piano_info():
 
 
 def violin_info():
-    ''' returns information about the violins'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(violinCost))
     print('\033[1m' + violin + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -194,7 +195,7 @@ def violin_info():
 
 
 def eguitar_info():
-    '''returns information about the electric guitars '''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(eguitarCost))
     print('\033[1m' + eguitar + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -203,7 +204,7 @@ def eguitar_info():
 
 
 def aguitar_info():
-    '''returns information about the acoustic guitars '''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(aguitarCost))
     print('\033[1m' + aguitar + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -212,7 +213,7 @@ def aguitar_info():
 
 
 def banjo_info():
-    '''returns information about the banjos '''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(banjoCost))
     print('\033[1m' + banjo + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -221,7 +222,7 @@ def banjo_info():
 
 
 def trumpet_info():
-    ''' returns information about the trumpets'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(trumpetCost))
     print('\033[1m' + trumpet + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -230,7 +231,7 @@ def trumpet_info():
 
 
 def sax_info():
-    ''' returns information about the saxophones'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(saxCost))
     print('\033[1m' + sax + '\033[0m' + "\nPrice to rent (tax not included): "
           + '\033[1m' + customerTotal + '\033[0m')
@@ -238,7 +239,7 @@ def sax_info():
 
 
 def conga_info():
-    ''' returns information about the conga sets'''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(congaCost))
     print('\033[1m' + conga + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
@@ -247,7 +248,7 @@ def conga_info():
 
 
 def drum_info():
-    '''returns information about the drum sets '''
+    ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(drumCost))
     print('\033[1m' + drums + '\033[0m' +
           "\nPrice to rent (per week, tax not included): " + '\033[1m' +
