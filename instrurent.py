@@ -64,7 +64,7 @@ def show_inventory():
     return (show)
 
 
-def rent_total():
+def rent_totall():
     '''returns the complete total and description of the instrument the user wants to rent '''
 
     whichInstrument = input("What instrument would you like to rent?\n").lower(
@@ -79,7 +79,7 @@ def rent_total():
         # writes what item the user is renting/buying to their info
         item_dict["Item"] = "Clarinet"
         userInfo_lst.append(item_dict)
-    
+
         return (get_customer_total(how_many_weeks(), clarinet_info()))
 
     elif whichInstrument == "piano":

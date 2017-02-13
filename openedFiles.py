@@ -36,9 +36,9 @@ with open("piano.txt", 'r') as pianoFile:
 with open("violin.txt", 'r') as violinFile:
     violin = violinFile.read()
 with open("eguitar.txt", 'r') as eguitarFile:
-    eguitar = eguitarFile.read()
+    electricguitar = eguitarFile.read()
 with open("aguitar.txt", 'r') as aguitarFile:
-    aguitar = aguitarFile.read()
+    acousticguitar = aguitarFile.read()
 with open("banjo.txt", 'r') as banjoFile:
     banjo = banjoFile.read()
 with open("trumpet.txt", 'r') as trumpetFile:
