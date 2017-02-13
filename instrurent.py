@@ -6,9 +6,7 @@ import sys
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
-    print("Enter Q to quit\n")
-    userEmail = input("Enter your email address: ")
-    userEmail = userEmail.lower().replace(" ", "")
+
     if "@" and ".com" in userEmail:
         if userEmail in emails:
             #adds email to user's info
@@ -33,8 +31,8 @@ def validEmail():
         print("Canceling. . . ")
         sys.exit()
     else:
-        # print("Invalid email")
-        return validEmail()
+        print("Invalid email")
+        sys.exit()
 
 
 def show_inventory():
@@ -135,7 +133,7 @@ def itemInfo():
         dict['Piano'] = int(dict["Piano"]) - 1
 
     elif whatInstrument == "saxophone":
-        print('\033[1m' + saxophone + '\033[1m')
+        print('\033[1m' + sax + '\033[1m')
         rent_total = add_tax(rent_price(saxCost))
         buy_total = add_tax(saxCost)
         dict['Saxophone'] = int(dict["Saxophone"]) - 1
@@ -192,6 +190,9 @@ def confirm_trans():
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
+        print("Enter Q to quit\n")
+        userEmail = input("Enter your email address: ")
+        userEmail = userEmail.lower().replace(" ", "")
         print(validEmail())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
@@ -206,9 +207,12 @@ if __name__ == '__main__':
             userInfo_lst.append(item_dict)
             print(itemInfo())
             print(confirm_trans())
-        elif customerChoice == "rt":
-            for person in transactions:
-                print(person)
+
+        elif customerChoice == "s":
+            searchWhat = input("What are you searching for?")
+            for line in transactionline:
+                if searchWhat in line:
+                    print(line)
         else:
             print("Invalid Answer.")
             sys.exit()

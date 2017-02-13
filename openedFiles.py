@@ -29,6 +29,7 @@ with open("inventory.csv", 'r') as inventoryFile:
     instruments = inventory[::2]
 with open("transactions.csv", 'r') as transactionFile:
     transactionhistory = transactionFile.read()
+    transactionline = transactionhistory.splitlines()
 with open("clarinet.txt", 'r') as clarinetFile:
     clarinet = clarinetFile.read()
 with open("drums.txt", 'r') as drumFile:

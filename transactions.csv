@@ -1,3 +1,6 @@
 ['onna123@gmail.com', {'Date': '2-10-2017'}, {'Item': 'Clarinet'}, {'Weeks rented': 2}, {'Total': '$326.06'}]
 ['onna123@gmail.com', {'Date': '2-13-2017'}, {'Item': 'clarinet'}, {'Total': '$1254.03'}]
 ['onna@gmail.com', {'Date': '2-13-2017'}, {'Action': 'r'}, {'Item': 'violin'}, {'Weeks rented': 3}, {'Total': '$292.11'}]
+['onna123@gmail.com', {'Date': '2-13-2017'}, {'Action': 'r'}, {'Item': 'piano'}, {'Weeks rented': 2}, {'Total': '$473.22'}]
+['onna@gmail.com', {'Date': '2-13-2017'}, {'Action': 'r'}, {'Item': 'saxophone'}, {'Weeks rented': 1}, {'Total': '$438.72'}]
+['onna123@gmail.com', {'Date': '2-13-2017'}, {'Action': 'r'}, {'Item': 'electricguitar'}, {'Weeks rented': 3}, {'Total': '$375.57'}]
