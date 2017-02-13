@@ -205,10 +205,14 @@ if __name__ == '__main__':
             item_dict["Item"] = whatInstrument
             userInfo_lst.append(item_dict)
             print(itemInfo())
+            print(confirm_trans())
+        elif customerChoice == "rt":
+            for person in transactions:
+                print(person)
         else:
             print("Invalid Answer.")
             sys.exit()
-        print(confirm_trans())
+
     elif user == "employee":
         print("nothing")
     else:

@@ -12,11 +12,11 @@ saxCost = 3153.99
 trumpetCost = 2438.99
 congaCost = 269.99
 userInfo_lst = []
-item_dict = {}
-total_dict = {}
-week_dict = {}
 date_dict = {}
 option_dict = {}
+item_dict = {}
+week_dict = {}
+total_dict = {}
 
 with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()
