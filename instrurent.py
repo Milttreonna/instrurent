@@ -214,7 +214,8 @@ if __name__ == '__main__':
                 if searchWhat in line:
                     print(line, "\n")
         elif customerChoice == "h":
-        
+            print("Here's our history log:\n")
+
         else:
             print("Invalid Answer.")
             sys.exit()
