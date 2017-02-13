@@ -196,8 +196,7 @@ if __name__ == '__main__':
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
         customerChoice = input("What would you like to do?").lower().strip()
-        option_dict["Customer is"] = customerChoice
-        userInfo_lst.append(option_dict)
+
         if customerChoice == "b" or customerChoice == "r":
             print(show_inventory())
             whatInstrument = input("What instrument?  ").lower().replace(" ",
