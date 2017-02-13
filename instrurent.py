@@ -215,7 +215,8 @@ if __name__ == '__main__':
                     print(line, "\n")
         elif customerChoice == "h":
             print("Here's our history log:\n")
-
+            for line in transactionline:
+                print(line, "\n")
         else:
             print("Invalid Answer.")
             sys.exit()
