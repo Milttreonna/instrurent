@@ -6,7 +6,9 @@ import sys
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
-
+    print("Enter Q to quit\n")
+    userEmail = input("Enter your email address: ")
+    userEmail = userEmail.lower().replace(" ", "")
     if "@" and ".com" in userEmail:
         if userEmail in emails:
             #adds email to user's info
@@ -31,7 +33,7 @@ def validEmail():
         print("Canceling. . . ")
         sys.exit()
     else:
-        print("Invalid email")
+        # print("Invalid email")
         return validEmail()
 
 
@@ -51,85 +53,164 @@ def add_tax(p):
     return total
 
 
-# def rent_noTax():
+def format_total(total):
+    '''Returns formatted total '''
+    return "${0:.2f}".format(total)
+
+
 def rent_price(price):
     '''Takes the instrument's price and gets 13 percent of it'''
     rent = round(price * .13, 2)
     return rent
 
 
+def how_many_weeks():
+    '''asks the user how many weeks they would like to rent out the instrument
+    and returns it '''
+    weeks = ""
+    for l in (range(4)):
+        rentTime = int(input(
+            "How many weeks would you like to rent it?(1-3 only)\n"))
+        weeks += str(rentTime)
+        if rentTime <= 3:
+            break
+
+    week_dict["Weeks rented"] = rentTime
+    userInfo_lst.append(week_dict)
+    return int(weeks)
+
+
+def get_customer_total(weeks, item):
+    '''takes the price to rent the instrument, adds tax to it and multiplies it
+    by the number of weeks the user would like to rent it out '''
+    total = item * weeks
+
+    total_dict["Total"] = (format_total(total))
+    userInfo_lst.append(total_dict)
+    print("Total to rent:")
+    return ('\033[1m' + format_total(total) + '\033[0m')
+
+
 def itemInfo():
     if whatInstrument == "clarinet":
-        print(clarinet)
+        print('\033[1m' + clarinet + '\033[0m')
         rent_total = add_tax(rent_price(clarinetCost))
         buy_total = add_tax(clarinetCost)
+        dict['Clarinet'] = int(dict["Clarinet"]) - 1
+
     elif whatInstrument == "piano":
-        print(piano)
+        print('\033[1m' + piano + '\033[0m')
         rent_total = add_tax(rent_price(pianoCost))
         buy_total = add_tax(pianoCost)
+        dict['Piano'] = int(dict["Piano"]) - 1
+
     elif whatInstrument == "violin":
-        print(violin)
+        print('\033[1m' + violin + '\033[0m')
         rent_total = add_tax(rent_price(violinCost))
         buy_total = add_tax(violinCost)
+        dict['Violin'] = int(dict["Violin"]) - 1
+
     elif whatInstrument == "electricguitar":
-        print(electricguitar)
+        print('\033[1m' + electricguitar + '\033[1m')
         rent_total = add_tax(rent_price(eguitarCost))
         buy_total = add_tax(eguitarCost)
+        dict['Electric-guitar'] = int(dict["Electric-guitar"]) - 1
+
     elif whatInstrument == "acousticguitar":
-        print(acousticguitar)
+        print('\033[1m' + acousticguitar + '\033[1m')
         rent_total = add_tax(rent_price(aguitarCost))
         buy_total = add_tax(aguitarCost)
+        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) - 1
+
     elif whatInstrument == "banjo":
-        print(banjo)
+        print('\033[1m' + banjo + '\033[1m')
         rent_total = add_tax(rent_price(banjoCost))
         buy_total = add_tax(banjoCost)
+        dict['Banjo'] = int(dict["Banjo"]) - 1
+
     elif whatInstrument == "trumpet":
-        print(trumpet)
+        print('\033[1m' + trumpet + '\033[1m')
         rent_total = add_tax(rent_price(trumpetCost))
         buy_total = add_tax(trumpetCost)
+        dict['Piano'] = int(dict["Piano"]) - 1
+
     elif whatInstrument == "saxophone":
-        print(saxophone)
+        print('\033[1m' + saxophone + '\033[1m')
         rent_total = add_tax(rent_price(saxCost))
         buy_total = add_tax(saxCost)
+        dict['Saxophone'] = int(dict["Saxophone"]) - 1
+
     elif "conga" in whatInstrument:
-        print(conga)
+        print('\033[1m' + conga + '\033[1m')
         rent_total = add_tax(rent_price(congaCost))
         buy_total = add_tax(congaCost)
+        dict['Conga-set'] = int(dict["Conga-set"]) - 1
+
     elif "drum" in whatInstrument:
-        print(drums)
+        print('\033[1m' + drums + '\033[1m')
         rent_total = add_tax(rent_price(drumCost))
         buy_total = add_tax(drumCost)
+        dict['Drum-set'] = int(dict["Drum-set"]) - 1
+
+    elif whichInstrument == "q":
+        print("Canceling. . .")
+        sys.exit()
     else:
-        print("Invalid")
+        print("Invalid answer")
+        return description()
 
     if customerChoice == "b":
         total_dict["Total"] = (format_total(buy_total))
         userInfo_lst.append(total_dict)
-        return ("\nPrice to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
+        return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
     elif customerChoice == "r":
+        print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
+              '\033[0m')
+        return (get_customer_total(how_many_weeks(), rent_total))
 
-        return ("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
-                '\033[0m')
+
+def confirm_trans():
+    confirm = input("Confirm or cancel?").lower().strip()
+    if confirm == "confirm":
+        with open("transactions.csv", "a") as transactionFile:
+            transactionFile.write(str(userInfo_lst) + '\n')
+        with open("inventory.csv", 'w') as inventoryFile:
+            output = ''
+            for d in dict:
+                output += d + " " + str(dict[d]) + "\n"
+            inventoryFile.write(output)
+        return ("Confirmed")
+    elif confirm == "cancel":
+        print("Canceling . . .")
+        sys.exit()
+    else:
+        print("Invalid.")
+        sys.exit()
 
 
 if __name__ == '__main__':
+
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
-        print("Enter Q to quit\n")
-        userEmail = input("Enter your email address: ")
-        userEmail = userEmail.lower().replace(" ", "")
 
         print(validEmail())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
         customerChoice = input("What would you like to do?").lower().strip()
-        if customerChoice == "b":
+        if customerChoice == "b" or customerChoice == "r":
             print(show_inventory())
-            whatInstrument = input("What item would you like to buy?")
-
+            whatInstrument = input("What instrument?  ").lower().replace(" ",
+                                                                         "")
+            item_dict["Item"] = whatInstrument
+            userInfo_lst.append(item_dict)
             print(itemInfo())
-        elif customerChoice == "r":
-            print(show_inventory())
-            whatInstrument = input("What item would you like to rent?")
-            print(itemInfo())
+        else:
+            print("Invalid Answer.")
+            sys.exit()
+        print(confirm_trans())
+    elif user == "employee":
+        print("nothing")
+    else:
+        print("Invalid. Try again.")
+        sys.exit()

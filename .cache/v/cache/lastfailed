@@ -1,1 +1,5 @@
-{}
+{
+  "instrurent_test.py::test_validEmail": true,
+  "instrurent_test.py::test_validEmail_spaces": true,
+  "instrurent_test.py::test_validEmail_uppercase": true
+}
