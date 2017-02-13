@@ -37,7 +37,7 @@ def validEmail():
         return validEmail()
 
 
-def rent_price(price):
+def get_rent_price(price):
     '''Takes the instrument's price and gets 13 percent of it'''
     rent = round(price * .13, 2)
     return rent
@@ -64,11 +64,12 @@ def show_inventory():
     return (show)
 
 
-def description():
+def rent_total():
     '''returns the complete total and description of the instrument the user wants to rent '''
 
     whichInstrument = input("What instrument would you like to rent?\n").lower(
     ).strip()
+    rent_info=
     if whichInstrument == "clarinet":
 
         #subtracts one of the Clarinets from the inventory dictionary, but
@@ -78,7 +79,7 @@ def description():
         # writes what item the user is renting/buying to their info
         item_dict["Item"] = "Clarinet"
         userInfo_lst.append(item_dict)
-
+    
         return (get_customer_total(how_many_weeks(), clarinet_info()))
 
     elif whichInstrument == "piano":
@@ -146,9 +147,11 @@ def clarinet_info():
     ''' returns rent price of item w/o tax'''
     customerTotal = str(rent_price(clarinetCost))
     #prints info about the item
+
     print('\033[1m' + clarinet + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
-          '\033[0m')
+          '\033[0m' + '\033[0m' + "\nPrice to buy (tax not included): " +
+          '\033[1m' + str(clarinetCost) + '\033[0m')
     return float(customerTotal)
 
 
@@ -157,7 +160,8 @@ def piano_info():
     customerTotal = str(rent_price(pianoCost))
     print('\033[1m' + piano + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
-          '\033[0m')
+          '\033[0m' + "\nPrice to buy (tax not included): " + '\033[1m' + str(
+              pianoCost) + '\033[0m')
     return float(customerTotal)
 
 
@@ -166,7 +170,8 @@ def violin_info():
     customerTotal = str(rent_price(violinCost))
     print('\033[1m' + violin + '\033[0m' +
           "\nPrice to rent (tax not included): " + '\033[1m' + customerTotal +
-          '\033[0m')
+          '\033[0m' + "\nPrice to buy (tax not included): " + '\033[1m' + str(
+              violinCost) + '\033[0m')
     return float(customerTotal)
 
 
@@ -270,6 +275,7 @@ def confirm_trans():
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"
             inventoryFile.write(output)
+            print(dict)
         return ("Confirmed")
     elif confirm == "cancel":
         print("Canceling . . .")
@@ -280,20 +286,27 @@ def confirm_trans():
 
 
 def return_item():
-    whatItem = input("What item did you rent out?")
+    whatItem = input("What item are you returning?")
+    # for item in
+    # def buy_item():
 
 
 if __name__ == '__main__':
+    # print(return_item())
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         print(validEmail())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
-        customerChoice = input("What would you like to do?")
+        customerChoice = input("What would you like to do?").lower().strip()
         print("\nHere's our inventory:")
-        print(show_inventory())
+        if customerChoice == "r" or customerChoice == "rent":
+            print(show_inventory())
+            print(description())
+            print(rent_total())
+        if customerChoice == "b" or customerChoice == "buy":
+            print(show_inventory())
 
-        print(description())
         print(confirm_trans())
     elif user == "employee":
         print("nothing")
