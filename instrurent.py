@@ -207,7 +207,6 @@ if __name__ == '__main__':
             userInfo_lst.append(item_dict)
             print(itemInfo())
             print(confirm_trans())
-
         elif customerChoice == "s":
             searchWhat = input("What are you searching for?")
             for line in transactionline:
