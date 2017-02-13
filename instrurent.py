@@ -208,10 +208,13 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "s":
-            searchWhat = input("What are you searching for?")
+            searchWhat = input("What are you searching for?").lower().replace(
+                " ", "")
             for line in transactionline:
                 if searchWhat in line:
-                    print(line)
+                    print(line, "\n")
+        elif customerChoice == "h":
+        
         else:
             print("Invalid Answer.")
             sys.exit()
