@@ -205,33 +205,32 @@ def history():
 def return_to_inventory():
     if "clarinet" in returnWhat:
         dict['Clarinet'] = int(dict["Clarinet"]) + 1
-     elif "piano" in returnWhat:
-         dict['Piano'] = int(dict["Piano"]) + 1
+    elif "piano" in returnWhat:
+        dict['Piano'] = int(dict["Piano"]) + 1
 
-     elif "violin" in returnWhat:
-         dict['Violin'] = int(dict["Violin"]) + 1
+    elif "violin" in returnWhat:
+        dict['Violin'] = int(dict["Violin"]) + 1
 
-     elif "electric" in returnWhat or returnWhat == "electricguitar":
-         dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
+    elif "electric" in returnWhat or returnWhat == "electricguitar":
+        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
 
-     elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
-         dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
+    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
+        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
 
-     elif "banjo" in returnWhat:
-         dict['Banjo'] = int(dict["Banjo"]) + 1
+    elif "banjo" in returnWhat:
+        dict['Banjo'] = int(dict["Banjo"]) + 1
 
-     elif "trumpet" in returnWhat:
-         dict['Trumpet'] = int(dict["Trumpet"]) + 1
+    elif "trumpet" in returnWhat:
+        dict['Trumpet'] = int(dict["Trumpet"]) + 1
 
-     elif "saxophone" in returnWhat:
-         dict['Saxophone'] = int(dict["Saxophone"]) + 1
+    elif "saxophone" in returnWhat:
+        dict['Saxophone'] = int(dict["Saxophone"]) + 1
 
-     elif "conga" in returnWhat:
+    elif "conga" in returnWhat:
         dict['Conga-set'] = int(dict["Conga-set"]) + 1
 
-     elif "drum" in returnWhat:
+    elif "drum" in returnWhat:
         dict['Drum-set'] = int(dict["Drum-set"]) + 1
-
 
 # def customer_receipt():
 #
