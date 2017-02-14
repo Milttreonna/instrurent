@@ -190,6 +190,18 @@ def confirm_trans():
         print("Invalid.")
         sys.exit()
 
+
+def customer_search():
+    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
+    results = ""
+    results += "Results: "
+    for line in transactionline:
+        if searchWhat in line:
+            results += ("\n" + line + "\n")
+    if results == "":
+        return ("No results found.")
+    else:
+        return (results)
 # def customer_receipt():
 #
 
@@ -210,12 +222,7 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "s":
-            searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
-            for line in transactionline:
-                if searchWhat in line:
-                    print(line, "\n")
-                else:
-                    print("no")
+            print(customer_search())
 
         elif customerChoice == "h":
             print("Here's our history log:\n")
