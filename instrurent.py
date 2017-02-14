@@ -130,7 +130,7 @@ def itemInfo():
         print('\033[1m' + trumpet + '\033[1m')
         rent_total = add_tax(rent_price(trumpetCost))
         buy_total = add_tax(trumpetCost)
-        dict['Piano'] = int(dict["Piano"]) - 1
+        dict['Trumpet'] = int(dict["Trumpet"]) - 1
 
     elif whatInstrument == "saxophone":
         print('\033[1m' + sax + '\033[1m')
