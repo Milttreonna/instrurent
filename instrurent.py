@@ -236,7 +236,8 @@ if __name__ == '__main__':
             print(customer_search())
         elif customerChoice == "h":
             print(history())
-        
+        elif customerChoice == "rt":
+            print("Not finished")
         elif customerChoice == "q":
             print("Canceling . . .")
             sys.exit()
