@@ -162,8 +162,6 @@ def itemInfo():
         return itemInfo()
 
 
-
-
 def confirm_trans():
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
@@ -204,8 +202,9 @@ def history():
     return all_history
 
 
-
 def return_to_inventory():
+    if "clarinet" in returnWhat:
+        dict['Clarinet'] = int(dict["Clarinet"]) + 1
 
 # def customer_receipt():
 #
