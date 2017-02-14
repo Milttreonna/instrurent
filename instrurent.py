@@ -101,58 +101,58 @@ def itemInfo():
         return ('\033[1m' + clarinet + '\033[0m')
 
     elif "piano" in whatInstrument:
-        return ('\033[1m' + piano + '\033[0m')
         rent_total = add_tax(rent_price(pianoCost))
         buy_total = add_tax(pianoCost)
         dict['Piano'] = int(dict["Piano"]) - 1
+        return ('\033[1m' + piano + '\033[0m')
 
     elif "violin" in whatInstrument:
-        return ('\033[1m' + violin + '\033[0m')
         rent_total = add_tax(rent_price(violinCost))
         buy_total = add_tax(violinCost)
         dict['Violin'] = int(dict["Violin"]) - 1
+        return ('\033[1m' + violin + '\033[0m')
 
     elif "electric" in whatInstrument or whatInstrument == "electricguitar":
-        return ('\033[1m' + electricguitar + '\033[1m')
         rent_total = add_tax(rent_price(eguitarCost))
         buy_total = add_tax(eguitarCost)
         dict['Electric-guitar'] = int(dict["Electric-guitar"]) - 1
+        return ('\033[1m' + electricguitar + '\033[1m')
 
     elif "acoustic" in whatInstrument or whatInstrument == "acousticguitar":
-        return ('\033[1m' + acousticguitar + '\033[1m')
         rent_total = add_tax(rent_price(aguitarCost))
         buy_total = add_tax(aguitarCost)
         dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) - 1
+        return ('\033[1m' + acousticguitar + '\033[1m')
 
     elif "banjo" in whatInstrument:
-        return ('\033[1m' + banjo + '\033[0m')
         rent_total = add_tax(rent_price(banjoCost))
         buy_total = add_tax(banjoCost)
         dict['Banjo'] = int(dict["Banjo"]) - 1
+        return ('\033[1m' + banjo + '\033[0m')
 
     elif "trumpet" in whatInstrument:
-        return ('\033[1m' + trumpet + '\033[0m')
         rent_total = add_tax(rent_price(trumpetCost))
         buy_total = add_tax(trumpetCost)
         dict['Trumpet'] = int(dict["Trumpet"]) - 1
+        return ('\033[1m' + trumpet + '\033[0m')
 
     elif "saxophone" in whatInstrument:
-        return ('\033[1m' + sax + '\033[0m')
         rent_total = add_tax(rent_price(saxCost))
         buy_total = add_tax(saxCost)
         dict['Saxophone'] = int(dict["Saxophone"]) - 1
+        return ('\033[1m' + sax + '\033[0m')
 
     elif "conga" in whatInstrument:
-        return ('\033[1m' + conga + '\033[0m')
         rent_total = add_tax(rent_price(congaCost))
         buy_total = add_tax(congaCost)
         dict['Conga-set'] = int(dict["Conga-set"]) - 1
+        return ('\033[1m' + conga + '\033[0m')
 
     elif "drum" in whatInstrument:
-        return ('\033[1m' + drums + '\033[0m')
         rent_total = add_tax(rent_price(drumCost))
         buy_total = add_tax(drumCost)
         dict['Drum-set'] = int(dict["Drum-set"]) - 1
+        return ('\033[1m' + drums + '\033[0m')
 
     elif whatInstrument == "q":
         print("Canceling. . .")
