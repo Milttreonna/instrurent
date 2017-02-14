@@ -150,7 +150,7 @@ def itemInfo():
         buy_total = add_tax(drumCost)
         dict['Drum-set'] = int(dict["Drum-set"]) - 1
 
-    elif whichInstrument == "q":
+    elif whatInstrument == "q":
         print("Canceling. . .")
         sys.exit()
     else:
