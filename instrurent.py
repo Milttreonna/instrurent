@@ -214,6 +214,8 @@ if __name__ == '__main__':
             for line in transactionline:
                 if searchWhat in line:
                     print(line, "\n")
+                else:
+                    print("no")
 
         elif customerChoice == "h":
             print("Here's our history log:\n")
