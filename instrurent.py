@@ -236,9 +236,9 @@ if __name__ == '__main__':
                 seperate = line.split(",")
                 if userEmail in line:
                     if "Return date" not in line:
-                        # print(line)
-                        # print(seperate)
-                        print(seperate[0], seperate[3])
+                        if "{'Action': 'b'}" not in line:
+                            print("Here's what you have out:")
+                            print(seperate[0][2:-1], seperate[1], seperate[3])
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
