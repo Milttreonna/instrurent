@@ -220,8 +220,10 @@ def return_to_inventory():
      elif "banjo" in returnWhat:
          dict['Banjo'] = int(dict["Banjo"]) + 1
 
-    
+     elif "trumpet" in returnWhat:
+         dict['Trumpet'] = int(dict["Trumpet"]) + 1
 
+    
 # def customer_receipt():
 #
 
