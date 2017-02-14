@@ -239,7 +239,7 @@ if __name__ == '__main__':
                                 "Which item are you returning? ").lower(
                                 ).strip()
                             if returnWhat in seperate[3]:
-
+                                return_to_inventory()
                                 print("Thank you for returning!")
 
         elif customerChoice == "s":
