@@ -214,7 +214,13 @@ def return_to_inventory():
      elif "electric" in returnWhat or returnWhat == "electricguitar":
          dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
 
-     
+     elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
+         dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
+
+     elif "banjo" in returnWhat:
+         dict['Banjo'] = int(dict["Banjo"]) + 1
+
+    
 
 # def customer_receipt():
 #
