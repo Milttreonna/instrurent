@@ -161,15 +161,7 @@ def itemInfo():
         print("Invalid answer")
         return itemInfo()
 
-    if customerChoice == "b":
-        total_dict["Total"] = (format_total(buy_total))
-        userInfo_lst.append(total_dict)
-        return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
-    elif customerChoice == "r":
-        print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
-              '\033[0m')
-        return (get_customer_total(how_many_weeks(), rent_total))
 
 
 def confirm_trans():
@@ -211,6 +203,10 @@ def history():
         all_history += ("\n" + line + "\n")
     return all_history
 
+
+
+def return_to_inventory():
+
 # def customer_receipt():
 #
 
@@ -239,8 +235,11 @@ if __name__ == '__main__':
                         if "{'Action': 'b'}" not in line:
                             print("Here's what you have out:")
                             print(seperate[0][2:-1], seperate[1], seperate[3])
-                            returnWhat = input("Which item are you returning?")
-                            if returnWhat in seperate[1]:
+                            returnWhat = input(
+                                "Which item are you returning? ").lower(
+                                ).strip()
+                            if returnWhat in seperate[3]:
+
                                 print("Thank you for returning!")
 
         elif customerChoice == "s":
