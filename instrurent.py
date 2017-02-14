@@ -155,7 +155,7 @@ def itemInfo():
         sys.exit()
     else:
         print("Invalid answer")
-        return description()
+        return itemInfo()
 
     if customerChoice == "b":
         total_dict["Total"] = (format_total(buy_total))
