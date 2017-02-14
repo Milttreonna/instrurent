@@ -204,6 +204,11 @@ def return_to_inventory():
         dict['Drum-set'] = int(dict["Drum-set"]) + 1
     else:
         return ("Not valid.")
+    with open("inventory.csv", 'w') as inventoryFile:
+        output = ''
+        for d in dict:
+            output += d + " " + str(dict[d]) + "\n"
+        inventoryFile.write(output)
 
 
 def confirm_trans():
@@ -245,7 +250,13 @@ def history():
         all_history += ("\n" + line + "\n")
     return all_history
 
-# def returnOption():
+
+def returnOption():
+    for line in transactionline:
+        seperate = line.split(",")
+        if userEmail in line and "Return date" not in line and "{'Action': 'b'}" not in line:
+            returnList.append(seperate[3])
+    return (returnList)
 
 # def customer_receipt():
 #
@@ -269,23 +280,20 @@ if __name__ == '__main__':
             print(confirm_trans())
         elif customerChoice == "rt":
             returnList = []
-            for line in transactionline:
-                seperate = line.split(",")
-                if userEmail in line:
-                    if "Return date" not in line:
-                        if "{'Action': 'b'}" not in line:
-                            returnList.append(seperate[3])
-            print(returnList)
-
+            print(returnOption())
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
+            thankCustomer = ""
             for item in returnList:
                 if returnWhat in item:
                     return_to_inventory()
-                    print("Thank you for returning!")
-                else:
-                    print("Invalid. Try again.")
-                    # return returnOption()
+                    thankCustomer += (
+                        "Thank you for returning the " + returnWhat + "!")
+                    break
+            if thankCustomer == "":
+                print("Answer invalid.")
+            else:
+                print(thankCustomer)
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
