@@ -231,13 +231,13 @@ if __name__ == '__main__':
             print(show_inventory())
             print(itemInfo())
             print(confirm_trans())
+        elif customerChoice == "rt":
+            print("Not finished")
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
             print(customer_search())
         elif customerChoice == "h":
             print(history())
-        elif customerChoice == "rt":
-            print("Not finished")
         elif customerChoice == "q":
             print("Canceling . . .")
             sys.exit()
