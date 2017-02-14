@@ -205,6 +205,13 @@ def history():
 def return_to_inventory():
     if "clarinet" in returnWhat:
         dict['Clarinet'] = int(dict["Clarinet"]) + 1
+     elif "piano" in returnWhat:
+         dict['Piano'] = int(dict["Piano"]) + 1
+
+     elif "violin" in returnWhat:
+         dict['Violin'] = int(dict["Violin"]) + 1
+
+    
 
 # def customer_receipt():
 #
