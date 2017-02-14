@@ -240,6 +240,8 @@ if __name__ == '__main__':
                             print("Here's what you have out:")
                             print(seperate[0][2:-1], seperate[1], seperate[3])
                             returnWhat = input("Which item are you returning?")
+                            if returnWhat in seperate[1]:
+                                print("Thank you for returning!")
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
