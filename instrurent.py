@@ -232,7 +232,14 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "rt":
-            print("Not finished")
+            for line in transactionline:
+                seperate = line.split(",")
+                if userEmail in line:
+                    if "Return date" not in line:
+                        # print(line)
+                        # print(seperate)
+                        print(seperate[0], seperate[3])
+
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
             print(customer_search())
