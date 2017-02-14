@@ -223,7 +223,11 @@ def return_to_inventory():
      elif "trumpet" in returnWhat:
          dict['Trumpet'] = int(dict["Trumpet"]) + 1
 
+     elif "saxophone" in returnWhat:
+         dict['Saxophone'] = int(dict["Saxophone"]) + 1
+
     
+
 # def customer_receipt():
 #
 
