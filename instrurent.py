@@ -90,49 +90,53 @@ def get_customer_total(weeks, item):
 
 
 def itemInfo():
-    if whatInstrument == "clarinet":
+    whatInstrument = input("What instrument?  ").lower().strip()
+    item_dict["Item"] = whatInstrument
+    userInfo_lst.append(item_dict)
+
+    if "clarinet" in whatInstrument:
         print('\033[1m' + clarinet + '\033[0m')
         rent_total = add_tax(rent_price(clarinetCost))
         buy_total = add_tax(clarinetCost)
         dict['Clarinet'] = int(dict["Clarinet"]) - 1
 
-    elif whatInstrument == "piano":
+    elif "piano" in whatInstrument:
         print('\033[1m' + piano + '\033[0m')
         rent_total = add_tax(rent_price(pianoCost))
         buy_total = add_tax(pianoCost)
         dict['Piano'] = int(dict["Piano"]) - 1
 
-    elif whatInstrument == "violin":
+    elif "violin" in whatInstrument:
         print('\033[1m' + violin + '\033[0m')
         rent_total = add_tax(rent_price(violinCost))
         buy_total = add_tax(violinCost)
         dict['Violin'] = int(dict["Violin"]) - 1
 
-    elif whatInstrument == "electricguitar":
+    elif "electric" in whatInstrument or whatInstrument == "electricguitar":
         print('\033[1m' + electricguitar + '\033[1m')
         rent_total = add_tax(rent_price(eguitarCost))
         buy_total = add_tax(eguitarCost)
         dict['Electric-guitar'] = int(dict["Electric-guitar"]) - 1
 
-    elif whatInstrument == "acousticguitar":
+    elif "acoustic" in whatInstrument or whatInstrument == "acousticguitar":
         print('\033[1m' + acousticguitar + '\033[1m')
         rent_total = add_tax(rent_price(aguitarCost))
         buy_total = add_tax(aguitarCost)
         dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) - 1
 
-    elif whatInstrument == "banjo":
+    elif "banjo" in whatInstrument:
         print('\033[1m' + banjo + '\033[1m')
         rent_total = add_tax(rent_price(banjoCost))
         buy_total = add_tax(banjoCost)
         dict['Banjo'] = int(dict["Banjo"]) - 1
 
-    elif whatInstrument == "trumpet":
+    elif "trumpet" in whatInstrument:
         print('\033[1m' + trumpet + '\033[1m')
         rent_total = add_tax(rent_price(trumpetCost))
         buy_total = add_tax(trumpetCost)
         dict['Trumpet'] = int(dict["Trumpet"]) - 1
 
-    elif whatInstrument == "saxophone":
+    elif "saxophone" in whatInstrument:
         print('\033[1m' + sax + '\033[1m')
         rent_total = add_tax(rent_price(saxCost))
         buy_total = add_tax(saxCost)
@@ -186,6 +190,8 @@ def confirm_trans():
         print("Invalid.")
         sys.exit()
 
+# def customer_receipt():
+#
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
@@ -201,22 +207,21 @@ if __name__ == '__main__':
         userInfo_lst.append(option_dict)
         if customerChoice == "b" or customerChoice == "r":
             print(show_inventory())
-            whatInstrument = input("What instrument?  ").lower().replace(" ",
-                                                                         "")
-            item_dict["Item"] = whatInstrument
-            userInfo_lst.append(item_dict)
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "s":
-            searchWhat = input("What are you searching for?").lower().replace(
-                " ", "")
+            searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
             for line in transactionline:
                 if searchWhat in line:
                     print(line, "\n")
+
         elif customerChoice == "h":
             print("Here's our history log:\n")
             for line in transactionline:
                 print(line, "\n")
+        elif customerChoice == "q":
+            print("Canceling . . .")
+            sys.exit()
         else:
             print("Invalid Answer.")
             sys.exit()
