@@ -175,6 +175,7 @@ def itemInfo():
 def return_to_inventory():
     if "clarinet" in returnWhat:
         dict['Clarinet'] = int(dict["Clarinet"]) + 1
+
     elif "piano" in returnWhat:
         dict['Piano'] = int(dict["Piano"]) + 1
 
@@ -244,6 +245,8 @@ def history():
         all_history += ("\n" + line + "\n")
     return all_history
 
+# def returnOption():
+
 # def customer_receipt():
 #
 
@@ -265,19 +268,24 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "rt":
+            returnList = []
             for line in transactionline:
                 seperate = line.split(",")
                 if userEmail in line:
                     if "Return date" not in line:
                         if "{'Action': 'b'}" not in line:
-                            print("Here's what you have out:")
-                            print(seperate[0][2:-1], seperate[1], seperate[3])
-                            returnWhat = input(
-                                "Which item are you returning? ").lower(
-                                ).strip()
-                            if returnWhat in seperate[3]:
-                                return_to_inventory()
-                                print("Thank you for returning!")
+                            returnList.append(seperate[3])
+            print(returnList)
+
+            returnWhat = input("Which item are you returning? ").lower().strip(
+            )
+            for item in returnList:
+                if returnWhat in item:
+                    return_to_inventory()
+                    print("Thank you for returning!")
+                else:
+                    print("Invalid. Try again.")
+                    # return returnOption()
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
