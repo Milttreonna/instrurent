@@ -251,15 +251,29 @@ def history():
     return all_history
 
 
-def returnOption():
+def items_not_returned():
     for line in transactionline:
         seperate = line.split(",")
         if userEmail in line and "Return date" not in line and "{'Action': 'b'}" not in line:
             returnList.append(seperate[3])
     return (returnList)
 
+
 # def customer_receipt():
 #
+def is_return_item_valid():
+    thankCustomer = ""
+    for item in returnList:
+        if returnWhat in item:
+            return_to_inventory()
+            thankCustomer += (
+                "Thank you for returning the " + returnWhat + "!")
+            break
+    if thankCustomer == "":
+        return ("Answer invalid.")
+    else:
+        return (thankCustomer)
+
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
@@ -280,20 +294,10 @@ if __name__ == '__main__':
             print(confirm_trans())
         elif customerChoice == "rt":
             returnList = []
-            print(returnOption())
+            print(items_not_returned())
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
-            thankCustomer = ""
-            for item in returnList:
-                if returnWhat in item:
-                    return_to_inventory()
-                    thankCustomer += (
-                        "Thank you for returning the " + returnWhat + "!")
-                    break
-            if thankCustomer == "":
-                print("Answer invalid.")
-            else:
-                print(thankCustomer)
+            print(is_return_item_valid())
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
