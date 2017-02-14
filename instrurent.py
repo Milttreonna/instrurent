@@ -198,10 +198,19 @@ def customer_search():
     for line in transactionline:
         if searchWhat in line:
             results += ("\n" + line + "\n")
-    if results == "":
+    if results == "Results: ":
         return ("No results found.")
     else:
         return (results)
+
+
+def history():
+    all_history = ""
+    print("Here's our history log:\n")
+    for line in transactionline:
+        all_history += ("\n" + line + "\n")
+    return all_history
+
 # def customer_receipt():
 #
 
@@ -213,7 +222,8 @@ if __name__ == '__main__':
         userEmail = userEmail.lower().replace(" ", "")
         print(validEmail())
         print(
-            "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= user history")
+            "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= all history")
+
         customerChoice = input("What would you like to do?").lower().strip()
         option_dict["Action"] = customerChoice
         userInfo_lst.append(option_dict)
@@ -222,12 +232,11 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "s":
+            print("To search a date: m-da-year\nExample: 8-10-1998")
             print(customer_search())
-
         elif customerChoice == "h":
-            print("Here's our history log:\n")
-            for line in transactionline:
-                print(line, "\n")
+            print(history())
+        
         elif customerChoice == "q":
             print("Canceling . . .")
             sys.exit()
