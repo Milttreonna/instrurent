@@ -19,7 +19,7 @@ week_dict = {}
 total_dict = {}
 return_dict = {}
 
-with open("emails.csv", "r") as emailFile:
+with open("emails.txt", "r") as emailFile:
     emails = emailFile.read().split()
 with open("inventory.csv", 'r') as inventoryFile:
     inventory = inventoryFile.read().split()
