@@ -20,7 +20,7 @@ def validEmail():
         else:
             print("New user")
             #writes the user's email to the email file
-            with open("emails.txt", "a") as emailFile:
+            with open("emails.csv", "a") as emailFile:
                 emailFile.write(userEmail + '\n')
             userInfo_lst.append(userEmail)
             date_dict["Date"] = (
@@ -172,51 +172,12 @@ def itemInfo():
         return (get_customer_total(how_many_weeks(), rent_total))
 
 
-def return_to_inventory():
-    if "clarinet" in returnWhat:
-        dict['Clarinet'] = int(dict["Clarinet"]) + 1
-
-    elif "piano" in returnWhat:
-        dict['Piano'] = int(dict["Piano"]) + 1
-
-    elif "violin" in returnWhat:
-        dict['Violin'] = int(dict["Violin"]) + 1
-
-    elif "electric" in returnWhat or returnWhat == "electricguitar":
-        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
-
-    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
-        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
-
-    elif "banjo" in returnWhat:
-        dict['Banjo'] = int(dict["Banjo"]) + 1
-
-    elif "trumpet" in returnWhat:
-        dict['Trumpet'] = int(dict["Trumpet"]) + 1
-
-    elif "saxophone" in returnWhat:
-        dict['Saxophone'] = int(dict["Saxophone"]) + 1
-
-    elif "conga" in returnWhat:
-        dict['Conga-set'] = int(dict["Conga-set"]) + 1
-
-    elif "drum" in returnWhat:
-        dict['Drum-set'] = int(dict["Drum-set"]) + 1
-    else:
-        return ("Not valid.")
-    with open("inventory.txt", 'w') as inventoryFile:
-        output = ''
-        for d in dict:
-            output += d + " " + str(dict[d]) + "\n"
-        inventoryFile.write(output)
-
-
 def confirm_trans():
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
-        with open("transactions.txt", "a") as transactionFile:
+        with open("transactions.csv", "a") as transactionFile:
             transactionFile.write(str(userInfo_lst) + '\n')
-        with open("inventory.txt", 'w') as inventoryFile:
+        with open("inventory.csv", 'w') as inventoryFile:
             output = ''
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"
@@ -252,17 +213,18 @@ def history():
 
 
 def items_not_returned():
-
     for line in transactionline:
         seperate = line.split(",")
-
+        print(seperate)
+        # seperateList.append(seperate)
         if userEmail in line and "Return date" not in line and "{'Action': 'b'}" not in line:
             returnList.append(seperate[3])
-    seperate.append(return_dict)
     return_dict["Return date"] = (
         str(now.month) + "-" + str(now.day) + "-" + str(now.year))
     userInfo_lst.append(return_dict)
-    print(seperate)
+    for item in seperate:
+        item += str(return_dict)
+    # print(seperate)
     return (returnList)
 
 
@@ -280,6 +242,45 @@ def is_return_item_valid():
         return ("Answer invalid.")
     else:
         return (thankCustomer)
+
+
+def return_to_inventory():
+    if "clarinet" in returnWhat:
+        dict['Clarinet'] = int(dict["Clarinet"]) + 1
+
+    elif "piano" in returnWhat:
+        dict['Piano'] = int(dict["Piano"]) + 1
+
+    elif "violin" in returnWhat:
+        dict['Violin'] = int(dict["Violin"]) + 1
+
+    elif "electric" in returnWhat or returnWhat == "electricguitar":
+        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
+
+    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
+        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
+
+    elif "banjo" in returnWhat:
+        dict['Banjo'] = int(dict["Banjo"]) + 1
+
+    elif "trumpet" in returnWhat:
+        dict['Trumpet'] = int(dict["Trumpet"]) + 1
+
+    elif "saxophone" in returnWhat:
+        dict['Saxophone'] = int(dict["Saxophone"]) + 1
+
+    elif "conga" in returnWhat:
+        dict['Conga-set'] = int(dict["Conga-set"]) + 1
+
+    elif "drum" in returnWhat:
+        dict['Drum-set'] = int(dict["Drum-set"]) + 1
+    else:
+        return ("Not valid.")
+    with open("inventory.csv", 'w') as inventoryFile:
+        output = ''
+        for d in dict:
+            output += d + " " + str(dict[d]) + "\n"
+        inventoryFile.write(output)
 
 
 if __name__ == '__main__':
