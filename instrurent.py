@@ -214,7 +214,7 @@ def return_to_inventory():
 def confirm_trans():
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
-        with open("transactions.csv", "a") as transactionFile:
+        with open("transactions.txt", "a") as transactionFile:
             transactionFile.write(str(userInfo_lst) + '\n')
         with open("inventory.txt", 'w') as inventoryFile:
             output = ''
