@@ -296,7 +296,7 @@ if __name__ == '__main__':
 
         elif customerChoice == "rt":
             returnList = []
-            print(items_not_returned())
+            print(add_return_date())
             print(returnList)
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
