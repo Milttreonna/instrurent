@@ -167,7 +167,7 @@ def confirm_trans():
     if confirm == "confirm":
         with open("transactions.csv", "a") as transactionFile:
             transactionFile.write(str(userInfo_lst) + '\n')
-        with open("inventory.csv", 'w') as inventoryFile:
+        with open("inventory.txt", 'w') as inventoryFile:
             output = ''
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"

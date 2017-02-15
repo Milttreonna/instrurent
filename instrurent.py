@@ -204,7 +204,7 @@ def return_to_inventory():
         dict['Drum-set'] = int(dict["Drum-set"]) + 1
     else:
         return ("Not valid.")
-    with open("inventory.csv", 'w') as inventoryFile:
+    with open("inventory.txt", 'w') as inventoryFile:
         output = ''
         for d in dict:
             output += d + " " + str(dict[d]) + "\n"
@@ -216,7 +216,7 @@ def confirm_trans():
     if confirm == "confirm":
         with open("transactions.csv", "a") as transactionFile:
             transactionFile.write(str(userInfo_lst) + '\n')
-        with open("inventory.csv", 'w') as inventoryFile:
+        with open("inventory.txt", 'w') as inventoryFile:
             output = ''
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"

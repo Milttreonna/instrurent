@@ -21,7 +21,7 @@ return_dict = {}
 
 with open("emails.txt", "r") as emailFile:
     emails = emailFile.read().split()
-with open("inventory.csv", 'r') as inventoryFile:
+with open("inventory.txt", 'r') as inventoryFile:
     inventory = inventoryFile.read().split()
     # lowerinventory = inventoryFile.lower()
     dict = {inventory[line]: inventory[line + 1]
