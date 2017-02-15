@@ -17,6 +17,7 @@ option_dict = {}
 item_dict = {}
 week_dict = {}
 total_dict = {}
+return_dict = {}
 
 with open("emails.csv", "r") as emailFile:
     emails = emailFile.read().split()

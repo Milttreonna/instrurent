@@ -252,10 +252,17 @@ def history():
 
 
 def items_not_returned():
+
     for line in transactionline:
         seperate = line.split(",")
+
         if userEmail in line and "Return date" not in line and "{'Action': 'b'}" not in line:
             returnList.append(seperate[3])
+    seperate.append(return_dict)
+    return_dict["Return date"] = (
+        str(now.month) + "-" + str(now.day) + "-" + str(now.year))
+    userInfo_lst.append(return_dict)
+    print(seperate)
     return (returnList)
 
 
