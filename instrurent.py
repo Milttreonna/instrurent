@@ -72,6 +72,8 @@ def how_many_weeks():
         weeks += str(rentTime)
         if rentTime <= 3:
             break
+    return_dict["Return date"] = "not returned"
+    userInfo_lst.append(return_dict)
 
     week_dict["Weeks rented"] = rentTime
     userInfo_lst.append(week_dict)
@@ -85,6 +87,7 @@ def get_customer_total(weeks, item):
 
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
+
     print("Total to rent:")
     return ('\033[1m' + format_total(total) + '\033[0m')
 
@@ -175,9 +178,9 @@ def itemInfo():
 def confirm_trans():
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
-        with open("transactions.csv", "a") as transactionFile:
+        with open("transactions.txt", "a") as transactionFile:
             transactionFile.write(str(userInfo_lst) + '\n')
-        with open("inventory.csv", 'w') as inventoryFile:
+        with open("inventory.txt", 'w') as inventoryFile:
             output = ''
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"
@@ -212,77 +215,6 @@ def history():
     return all_history
 
 
-def items_not_returned():
-    for line in transactionline:
-        seperate = line.split(",")
-        print(seperate)
-        # seperateList.append(seperate)
-        if userEmail in line and "Return date" not in line and "{'Action': 'b'}" not in line:
-            returnList.append(seperate[3])
-    return_dict["Return date"] = (
-        str(now.month) + "-" + str(now.day) + "-" + str(now.year))
-    userInfo_lst.append(return_dict)
-    for item in seperate:
-        item += str(return_dict)
-    # print(seperate)
-    return (returnList)
-
-
-# def customer_receipt():
-#
-def is_return_item_valid():
-    thankCustomer = ""
-    for item in returnList:
-        if returnWhat in item:
-            return_to_inventory()
-            thankCustomer += (
-                "Thank you for returning the " + returnWhat + "!")
-            break
-    if thankCustomer == "":
-        return ("Answer invalid.")
-    else:
-        return (thankCustomer)
-
-
-def return_to_inventory():
-    if "clarinet" in returnWhat:
-        dict['Clarinet'] = int(dict["Clarinet"]) + 1
-
-    elif "piano" in returnWhat:
-        dict['Piano'] = int(dict["Piano"]) + 1
-
-    elif "violin" in returnWhat:
-        dict['Violin'] = int(dict["Violin"]) + 1
-
-    elif "electric" in returnWhat or returnWhat == "electricguitar":
-        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
-
-    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
-        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
-
-    elif "banjo" in returnWhat:
-        dict['Banjo'] = int(dict["Banjo"]) + 1
-
-    elif "trumpet" in returnWhat:
-        dict['Trumpet'] = int(dict["Trumpet"]) + 1
-
-    elif "saxophone" in returnWhat:
-        dict['Saxophone'] = int(dict["Saxophone"]) + 1
-
-    elif "conga" in returnWhat:
-        dict['Conga-set'] = int(dict["Conga-set"]) + 1
-
-    elif "drum" in returnWhat:
-        dict['Drum-set'] = int(dict["Drum-set"]) + 1
-    else:
-        return ("Not valid.")
-    with open("inventory.csv", 'w') as inventoryFile:
-        output = ''
-        for d in dict:
-            output += d + " " + str(dict[d]) + "\n"
-        inventoryFile.write(output)
-
-
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
@@ -301,11 +233,7 @@ if __name__ == '__main__':
             print(itemInfo())
             print(confirm_trans())
         elif customerChoice == "rt":
-            returnList = []
-            print(items_not_returned())
-            returnWhat = input("Which item are you returning? ").lower().strip(
-            )
-            print(is_return_item_valid())
+            print("Nothing yet.")
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
