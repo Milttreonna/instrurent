@@ -43,6 +43,27 @@ def show_inventory():
     return (show)
 
 
+def customer_search():
+    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
+    results = ""
+    results += "Results: "
+    for line in transactionline:
+        if searchWhat in line:
+            results += ("\n" + line + "\n")
+    if results == "Results: ":
+        return ("No results found.")
+    else:
+        return (results)
+
+
+def history():
+    all_history = ""
+    print("Here's our history log:\n")
+    for line in transactionline:
+        all_history += ("\n" + line + "\n")
+    return all_history
+
+
 def add_tax(p):
     ''' Adds 7% sales tax to rent and returns the total'''
     tax = p * .07
@@ -192,25 +213,65 @@ def confirm_trans():
         sys.exit()
 
 
-def customer_search():
-    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
-    results = ""
-    results += "Results: "
-    for line in transactionline:
-        if searchWhat in line:
-            results += ("\n" + line + "\n")
-    if results == "Results: ":
-        return ("No results found.")
+def items_not_returned():
+    for line in transactionhistory:
+        if userEmail in line and "not returned" in line and "{'Action': 'b'}" not in line:
+            line = line.replace("not returned", (
+                str(now.month) + "-" + str(now.day) + "-" + str(now.year)))
+    return (line)
+
+
+def return_to_inventory():
+    if "clarinet" in returnWhat:
+        dict['Clarinet'] = int(dict["Clarinet"]) + 1
+
+    elif "piano" in returnWhat:
+        dict['Piano'] = int(dict["Piano"]) + 1
+
+    elif "violin" in returnWhat:
+        dict['Violin'] = int(dict["Violin"]) + 1
+
+    elif "electric" in returnWhat or returnWhat == "electricguitar":
+        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
+
+    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
+        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
+
+    elif "banjo" in returnWhat:
+        dict['Banjo'] = int(dict["Banjo"]) + 1
+
+    elif "trumpet" in returnWhat:
+        dict['Trumpet'] = int(dict["Trumpet"]) + 1
+
+    elif "saxophone" in returnWhat:
+        dict['Saxophone'] = int(dict["Saxophone"]) + 1
+
+    elif "conga" in returnWhat:
+        dict['Conga-set'] = int(dict["Conga-set"]) + 1
+
+    elif "drum" in returnWhat:
+        dict['Drum-set'] = int(dict["Drum-set"]) + 1
     else:
-        return (results)
+        return ("Not valid.")
+    with open("inventory.csv", 'w') as inventoryFile:
+        output = ''
+        for d in dict:
+            output += d + " " + str(dict[d]) + "\n"
+        inventoryFile.write(output)
 
 
-def history():
-    all_history = ""
-    print("Here's our history log:\n")
-    for line in transactionline:
-        all_history += ("\n" + line + "\n")
-    return all_history
+def is_return_item_valid():
+    thankCustomer = ""
+    for item in returnList:
+        if returnWhat in item:
+            return_to_inventory()
+            thankCustomer += (
+                "Thank you for returning the " + returnWhat + "!")
+            break
+    if thankCustomer == "":
+        return ("Answer invalid.")
+    else:
+        return (thankCustomer)
 
 
 if __name__ == '__main__':
@@ -234,7 +295,12 @@ if __name__ == '__main__':
             print(confirm_trans())
 
         elif customerChoice == "rt":
-            print("Nothing yet.")
+            returnList = []
+            print(items_not_returned())
+            print(returnList)
+            returnWhat = input("Which item are you returning? ").lower().strip(
+            )
+            print(is_return_item_valid())
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")

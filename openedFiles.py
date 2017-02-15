@@ -28,8 +28,8 @@ with open("inventory.txt", 'r') as inventoryFile:
     quantity = inventory[1::2]
     instruments = inventory[::2]
 with open("transactions.txt", 'r') as transactionFile:
-    transactionhistory = transactionFile.read()
-    transactionline = transactionhistory.splitlines()
+    transactionhistory = transactionFile.readlines()
+    # transactionline = transactionhistory.splitlines()
 with open("clarinet.txt", 'r') as clarinetFile:
     clarinet = clarinetFile.read()
 with open("drums.txt", 'r') as drumFile:
