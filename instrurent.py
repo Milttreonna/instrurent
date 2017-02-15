@@ -213,7 +213,7 @@ def confirm_trans():
         sys.exit()
 
 
-def items_not_returned():
+def add_return_date():
     for line in transactionhistory:
         if userEmail in line and "not returned" in line and "{'Action': 'b'}" not in line:
             line = line.replace("not returned", (
