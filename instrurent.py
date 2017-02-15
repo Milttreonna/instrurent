@@ -72,8 +72,6 @@ def how_many_weeks():
         weeks += str(rentTime)
         if rentTime <= 3:
             break
-    return_dict["Return date"] = "not returned"
-    userInfo_lst.append(return_dict)
 
     week_dict["Weeks rented"] = rentTime
     userInfo_lst.append(week_dict)
@@ -231,7 +229,10 @@ if __name__ == '__main__':
         if customerChoice == "b" or customerChoice == "r":
             print(show_inventory())
             print(itemInfo())
+            return_dict["Return date"] = "not returned"
+            userInfo_lst.append(return_dict)
             print(confirm_trans())
+
         elif customerChoice == "rt":
             print("Nothing yet.")
 
