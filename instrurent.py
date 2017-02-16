@@ -266,7 +266,8 @@ def update_return_date():
             sys.exit()
         elif returnWhat not in line:
             return "try again"
-        #elif this item has already been returned
+        elif userEmail in line and "not returned" not in line and returnWhat in line and "{'Action': 'b'}" not in line:
+            return ("Item has already been returned.")
         else:
             transactionString += "{0}".format(line)
     with open("transactions.txt", "w") as transactionFile:
