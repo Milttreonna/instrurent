@@ -18,7 +18,6 @@ def validEmail():
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
             userInfo_lst.append(date_dict)
             return ("Previous user")
-
         else:
             print("New user")
             #writes the user's email to the email file
@@ -79,8 +78,6 @@ def get_customer_total(weeks, item):
 
 def itemInfo():
     whatInstrument = input("What instrument?  ").lower().strip()
-    item_dict["Item"] = whatInstrument
-    userInfo_lst.append(item_dict)
 
     if "clarinet" in whatInstrument:
         print('\033[1m' + clarinet + '\033[0m')
@@ -150,11 +147,15 @@ def itemInfo():
         return itemInfo()
 
     if customerChoice == "b":
+        item_dict["Item"] = whatInstrument
+        userInfo_lst.append(item_dict)
         total_dict["Total"] = (format_total(buy_total))
         userInfo_lst.append(total_dict)
         return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
     elif customerChoice == "r":
+        item_dict["Item"] = whatInstrument
+        userInfo_lst.append(item_dict)
         print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
               '\033[0m')
         return (get_customer_total(how_many_weeks(), rent_total))
