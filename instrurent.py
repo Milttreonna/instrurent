@@ -214,11 +214,12 @@ def confirm_trans():
 
 
 def add_return_date():
-    for line in transactionhistory:
-        if userEmail in line and "not returned" in line and "{'Action': 'b'}" not in line:
-            line = line.replace("not returned", (
-                str(now.month) + "-" + str(now.day) + "-" + str(now.year)))
-    return (line)
+
+    # if userEmail
+    # transactionhistory.close()
+    # transactionhistory = open("transactions.txt", 'w')
+    # transactionhistory.write(line)
+    return (transactionhistory)
 
 
 def return_to_inventory():
@@ -295,12 +296,28 @@ if __name__ == '__main__':
             print(confirm_trans())
 
         elif customerChoice == "rt":
-            returnList = []
-            print(add_return_date())
-            print(returnList)
+            # print(add_return_date())
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
-            print(is_return_item_valid())
+            transactionString = ""
+            print(trans_file)
+            print("--------")
+            for line in trans_file:
+
+                if userEmail in line and "not returned" in line and returnWhat in line and "{'Action': 'b'}" not in line:
+                    print(line)
+                    print("--------")
+                    newLine = line.replace("not returned",
+                                           (str(now.month) + "-" + str(now.day)
+                                            + "-" + str(now.year)))
+                    print(newLine)
+                    print("--------")
+                    transactionString += "{0}".format(newLine)
+                else:
+                    transactionString += "{0}".format(line)
+            print(transactionString)
+            with open("transactions.txt", "w") as transactionFile:
+                transactionFile.write(transactionString)
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
