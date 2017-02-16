@@ -1,14 +1,13 @@
 from openedFiles import *
-from core import *
+# from core import (function names)
 import sys
 
-#this would be main
+#this would be core
 
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
-    userEmail = input("Enter your email address: ")
-    userEmail = userEmail.lower().replace(" ", "")
+
     if "@" and ".com" in userEmail:
         if userEmail in emails:
             #adds email to user's info
@@ -18,6 +17,7 @@ def validEmail():
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
             userInfo_lst.append(date_dict)
             return ("Previous user")
+
         else:
             print("New user")
             #writes the user's email to the email file
@@ -33,8 +33,7 @@ def validEmail():
         sys.exit()
     else:
         print("Invalid email")
-        return (validEmail())
-        # sys.exit()
+        sys.exit()
 
 
 def show_inventory():
@@ -43,6 +42,27 @@ def show_inventory():
     for i, q in zip(instruments, quantity):
         show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
     return (show)
+
+
+def customer_search():
+    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
+    results = ""
+    results += "Results: "
+    for line in transactionline:
+        if searchWhat in line:
+            results += ("\n" + line + "\n")
+    if results == "Results: ":
+        return ("No results found.")
+    else:
+        return (results)
+
+
+def history():
+    all_history = ""
+    print("Here's our history log:\n")
+    for line in transactionline:
+        all_history += ("\n" + line + "\n")
+    return all_history
 
 
 def add_tax(p):
@@ -62,6 +82,22 @@ def rent_price(price):
     '''Takes the instrument's price and gets 13 percent of it'''
     rent = round(price * .13, 2)
     return rent
+
+
+def how_many_weeks():
+    '''asks the user how many weeks they would like to rent out the instrument
+    and returns it '''
+    weeks = ""
+    for l in (range(4)):
+        rentTime = int(input(
+            "How many weeks would you like to rent it?(1-3 only)\n"))
+        weeks += str(rentTime)
+        if rentTime <= 3:
+            break
+
+    week_dict["Weeks rented"] = rentTime
+    userInfo_lst.append(week_dict)
+    return int(weeks)
 
 
 def get_customer_total(weeks, item):
@@ -154,11 +190,28 @@ def itemInfo():
         return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
     elif customerChoice == "r":
-        item_dict["Item"] = whatInstrument
-        userInfo_lst.append(item_dict)
         print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
               '\033[0m')
-        return (get_customer_total(how_many_weeks(), rent_total))
+    return (get_customer_total(how_many_weeks(), rent_total))
+
+
+def confirm_trans():
+    confirm = input("Confirm or cancel?").lower().strip()
+    if confirm == "confirm":
+        with open("transactions.txt", "a") as transactionFile:
+            transactionFile.write(str(userInfo_lst) + '\n')
+        with open("inventory.txt", 'w') as inventoryFile:
+            output = ''
+            for d in dict:
+                output += d + " " + str(dict[d]) + "\n"
+            inventoryFile.write(output)
+        return ("Confirmed")
+    elif confirm == "cancel":
+        print("Canceling . . .")
+        sys.exit()
+    else:
+        print("Invalid.")
+        sys.exit()
 
 
 def return_to_inventory():
@@ -201,63 +254,6 @@ def return_to_inventory():
     return ("Thanks for returning the" + returnWhat + "!")
 
 
-def customer_search():
-    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
-    results = ""
-    results += "Results: "
-    for line in transactionline:
-        if searchWhat in line:
-            results += ("\n" + line + "\n")
-    if results == "Results: ":
-        print("No results found.")
-        return (customer_search)
-    else:
-        return (results)
-
-
-def history():
-    all_history = ""
-    print("Here's our history log:\n")
-    for line in transactionline:
-        all_history += ("\n" + line + "\n")
-    return all_history
-
-
-def how_many_weeks():
-    '''asks the user how many weeks they would like to rent out the instrument
-    and returns it '''
-    weeks = ""
-    for l in (range(4)):
-        rentTime = int(input(
-            "How many weeks would you like to rent it?(1-3 only)\n"))
-        weeks += str(rentTime)
-        if rentTime <= 3:
-            break
-
-    week_dict["Weeks rented"] = rentTime
-    userInfo_lst.append(week_dict)
-    return int(weeks)
-
-
-def confirm_trans():
-    confirm = input("Confirm or cancel?").lower().strip()
-    if confirm == "confirm":
-        with open("transactions.txt", "a") as transactionFile:
-            transactionFile.write(str(userInfo_lst) + '\n')
-        with open("inventory.txt", 'w') as inventoryFile:
-            output = ''
-            for d in dict:
-                output += d + " " + str(dict[d]) + "\n"
-            inventoryFile.write(output)
-        return ("Confirmed")
-    elif confirm == "cancel":
-        print("Canceling . . .")
-        sys.exit()
-    else:
-        print("Invalid.")
-        sys.exit()
-
-
 def update_return_date():
     transactionString = ""
     for line in trans_file:
@@ -271,6 +267,7 @@ def update_return_date():
             sys.exit()
         elif returnWhat not in line:
             return "try again"
+        #elif this item has already been returned
         elif userEmail in line and "not returned" not in line and returnWhat in line and "{'Action': 'b'}" not in line:
             return ("Item has already been returned.")
         else:
@@ -283,6 +280,8 @@ if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         print("Enter Q to quit\n")
+        userEmail = input("Enter your email address: ")
+        userEmail = userEmail.lower().replace(" ", "")
         print(validEmail())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= all history")
@@ -300,8 +299,10 @@ if __name__ == '__main__':
         elif customerChoice == "rt":
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
-            print(update_return_date())
+            update_return_date()
             return_to_inventory()
+        # while update_return_date == "try again":
+        #     input(returnWhat)
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
