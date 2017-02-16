@@ -272,18 +272,6 @@ def update_return_date():
     with open("transactions.txt", "w") as transactionFile:
         transactionFile.write(transactionString)
 
-# def is_return_item_valid():
-#     thankCustomer = ""
-#     for line in trans_file:
-#         if returnWhat in item:
-#             return_to_inventory()
-#             thankCustomer += (
-#                 "Thank you for returning the " + returnWhat + "!")
-#             break
-#     if thankCustomer == "":
-#         return ("Answer invalid.")
-#     else:
-#         return (thankCustomer)
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
