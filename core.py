@@ -154,3 +154,43 @@ def itemInfo():
         print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
               '\033[0m')
         return (get_customer_total(how_many_weeks(), rent_total))
+
+
+def return_to_inventory():
+    if "clarinet" in returnWhat:
+        dict['Clarinet'] = int(dict["Clarinet"]) + 1
+
+    elif "piano" in returnWhat:
+        dict['Piano'] = int(dict["Piano"]) + 1
+
+    elif "violin" in returnWhat:
+        dict['Violin'] = int(dict["Violin"]) + 1
+
+    elif "electric" in returnWhat or returnWhat == "electricguitar":
+        dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
+
+    elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
+        dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
+
+    elif "banjo" in returnWhat:
+        dict['Banjo'] = int(dict["Banjo"]) + 1
+
+    elif "trumpet" in returnWhat:
+        dict['Trumpet'] = int(dict["Trumpet"]) + 1
+
+    elif "saxophone" in returnWhat:
+        dict['Saxophone'] = int(dict["Saxophone"]) + 1
+
+    elif "conga" in returnWhat:
+        dict['Conga-set'] = int(dict["Conga-set"]) + 1
+
+    elif "drum" in returnWhat:
+        dict['Drum-set'] = int(dict["Drum-set"]) + 1
+    else:
+        return ("Not valid.")
+    with open("inventory.txt", 'w') as inventoryFile:
+        return_output = ''
+        for d in dict:
+            return_output += d + " " + str(dict[d]) + "\n"
+        inventoryFile.write(return_output)
+    return ("Thanks for returning the" + returnWhat + "!")
