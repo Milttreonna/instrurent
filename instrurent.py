@@ -213,15 +213,6 @@ def confirm_trans():
         sys.exit()
 
 
-def add_return_date():
-
-    # if userEmail
-    # transactionhistory.close()
-    # transactionhistory = open("transactions.txt", 'w')
-    # transactionhistory.write(line)
-    return (transactionhistory)
-
-
 def return_to_inventory():
     if "clarinet" in returnWhat:
         dict['Clarinet'] = int(dict["Clarinet"]) + 1
@@ -255,25 +246,44 @@ def return_to_inventory():
     else:
         return ("Not valid.")
     with open("inventory.txt", 'w') as inventoryFile:
-        output = ''
+        return_output = ''
         for d in dict:
-            output += d + " " + str(dict[d]) + "\n"
-        inventoryFile.write(output)
+            return_output += d + " " + str(dict[d]) + "\n"
+        inventoryFile.write(return_output)
+    return ("Thanks for returning the" + returnWhat + "!")
 
 
-def is_return_item_valid():
-    thankCustomer = ""
-    for item in returnList:
-        if returnWhat in item:
-            return_to_inventory()
-            thankCustomer += (
-                "Thank you for returning the " + returnWhat + "!")
-            break
-    if thankCustomer == "":
-        return ("Answer invalid.")
-    else:
-        return (thankCustomer)
+def update_return_date():
+    transactionString = ""
+    for line in trans_file:
+        if userEmail in line and "not returned" in line and returnWhat in line and "{'Action': 'b'}" not in line:
+            newLine = line.replace("not returned", (
+                str(now.month) + "-" + str(now.day) + "-" + str(now.year)))
+            transactionString += "{0}".format(newLine)
+            return ("Thank you")
+        elif returnWhat == "q":
+            print("Canceling. . .")
+            sys.exit()
+        elif returnWhat not in line:
+            return "try again"
+        #elif this item has already been returned
+        else:
+            transactionString += "{0}".format(line)
+    with open("transactions.txt", "w") as transactionFile:
+        transactionFile.write(transactionString)
 
+# def is_return_item_valid():
+#     thankCustomer = ""
+#     for line in trans_file:
+#         if returnWhat in item:
+#             return_to_inventory()
+#             thankCustomer += (
+#                 "Thank you for returning the " + returnWhat + "!")
+#             break
+#     if thankCustomer == "":
+#         return ("Answer invalid.")
+#     else:
+#         return (thankCustomer)
 
 if __name__ == '__main__':
     user = input("Customer or Employee?").lower().strip()
@@ -298,26 +308,11 @@ if __name__ == '__main__':
         elif customerChoice == "rt":
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
-            transactionString = ""
-            print(trans_file)
-            print("--------")
-            for line in trans_file:
-
-                if userEmail in line and "not returned" in line and returnWhat in line and "{'Action': 'b'}" not in line:
-                    print(line)
-                    print("--------")
-                    newLine = line.replace("not returned",
-                                           (str(now.month) + "-" + str(now.day)
-                                            + "-" + str(now.year)))
-                    print(newLine)
-                    print("--------")
-                    transactionString += "{0}".format(newLine)
-                else:
-                    transactionString += "{0}".format(line)
-            print(transactionString)
-            with open("transactions.txt", "w") as transactionFile:
-                transactionFile.write(transactionString)
-            return_to_inventory()
+            update_return_date()
+            if update_return_date() == "Thank you":
+                return_to_inventory()
+            # while update_return_date == "try again":
+            #     input(returnWhat)
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
