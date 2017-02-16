@@ -13,7 +13,8 @@ def customer_search():
         if searchWhat in line:
             results += ("\n" + line + "\n")
     if results == "Results: ":
-        return ("No results found.")
+        print("No results found.")
+        return (customer_search)
     else:
         return (results)
 
@@ -24,25 +25,6 @@ def history():
     for line in transactionline:
         all_history += ("\n" + line + "\n")
     return all_history
-
-
-def add_tax(p):
-    ''' Adds 7% sales tax to rent and returns the total'''
-    tax = p * .07
-    p += tax
-    total = round(p, 2)
-    return total
-
-
-def format_total(total):
-    '''Returns formatted total '''
-    return "${0:.2f}".format(total)
-
-
-def rent_price(price):
-    '''Takes the instrument's price and gets 13 percent of it'''
-    rent = round(price * .13, 2)
-    return rent
 
 
 def how_many_weeks():
