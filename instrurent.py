@@ -254,7 +254,7 @@ def return_to_inventory():
         dict['Drum-set'] = int(dict["Drum-set"]) + 1
     else:
         return ("Not valid.")
-    with open("inventory.csv", 'w') as inventoryFile:
+    with open("inventory.txt", 'w') as inventoryFile:
         output = ''
         for d in dict:
             output += d + " " + str(dict[d]) + "\n"
@@ -296,7 +296,6 @@ if __name__ == '__main__':
             print(confirm_trans())
 
         elif customerChoice == "rt":
-            # print(add_return_date())
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
             transactionString = ""
@@ -318,6 +317,7 @@ if __name__ == '__main__':
             print(transactionString)
             with open("transactions.txt", "w") as transactionFile:
                 transactionFile.write(transactionString)
+            return_to_inventory()
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
