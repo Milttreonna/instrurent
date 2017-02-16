@@ -32,3 +32,11 @@ def validEmail():
     else:
         print("Invalid email")
         sys.exit()
+
+
+def show_inventory():
+    ''' Returns the formatted inventory in a different color'''
+    show = ''
+    for i, q in zip(instruments, quantity):
+        show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
+    return (show)

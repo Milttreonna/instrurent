@@ -5,14 +5,6 @@ import sys
 #this would be main
 
 
-def show_inventory():
-    ''' Returns the formatted inventory in a different color'''
-    show = ''
-    for i, q in zip(instruments, quantity):
-        show += ('\033[1m' + i + "s: " + q + '\033[0m' + "\n")
-    return (show)
-
-
 def customer_search():
     searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
     results = ""
