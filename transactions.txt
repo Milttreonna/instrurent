@@ -1,9 +1,1 @@
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'b'}, {'Item': 'violin'}, {'Total': '$748.99'}, {'Return date': 'not returned'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'b'}, {'Item': 'drums'}, {'Total': '$973.70'}, {'Return date': 'not returned'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'b'}, {'Item': 'acoustic guitar'}, {'Total': '$470.79'}, {'Return date': 'not returned'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'b'}, {'Item': 'electric guitar'}, {'Total': '$962.99'}, {'Return date': 'not returned'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'r'}, {'Item': 'trumpet'}, {'Weeks rented': 3}, {'Total': '$1017.78'}, {'Return date': '2-17-2017'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'r'}, {'Item': 'piano'}, {'Weeks rented': 2}, {'Total': '$473.22'}, {'Return date': '2-17-2017'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'r'}, {'Item': 'conga'}, {'Weeks rented': 3}, {'Total': '$112.68'}, {'Return date': '2-17-2017'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'r'}, {'Item': 'clarinet'}, {'Weeks rented': 3}, {'Total': '$489.09'}, {'Return date': '2-17-2017'}]
-['onna@gmail.com', {'Date': '2-17-2017'}, {'Action': 'r'}, {'Item': 'piano'}, {'Weeks rented': 2}, {'Total': '$473.22'}, {'Return date': 'not returned'}]
+
