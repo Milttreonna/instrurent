@@ -190,6 +190,8 @@ def itemInfo():
         return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
     elif customerChoice == "r":
+        item_dict["Item"] = whatInstrument
+        userInfo_lst.append(item_dict)
         print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
               '\033[0m')
     return (get_customer_total(how_many_weeks(), rent_total))
@@ -251,7 +253,6 @@ def return_to_inventory():
         for d in dict:
             return_output += d + " " + str(dict[d]) + "\n"
         inventoryFile.write(return_output)
-    return ("Thanks for returning the" + returnWhat + "!")
 
 
 def update_return_date():
@@ -261,19 +262,21 @@ def update_return_date():
             newLine = line.replace("not returned", (
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year)))
             transactionString += "{0}".format(newLine)
-            return ("Thank you")
+
         elif returnWhat == "q":
             print("Canceling. . .")
             sys.exit()
         elif returnWhat not in line:
-            return "try again"
-        #elif this item has already been returned
-        elif userEmail in line and "not returned" not in line and returnWhat in line and "{'Action': 'b'}" not in line:
+            return ("Try again")
+
+        elif userEmail in line and returnWhat in line and "not returned" not in line and "{'Action': 'b'}" not in line:
             return ("Item has already been returned.")
         else:
             transactionString += "{0}".format(line)
+
     with open("transactions.txt", "w") as transactionFile:
         transactionFile.write(transactionString)
+    return ("Done")
 
 
 if __name__ == '__main__':
@@ -299,10 +302,13 @@ if __name__ == '__main__':
         elif customerChoice == "rt":
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
-            update_return_date()
-            return_to_inventory()
-        # while update_return_date == "try again":
-        #     input(returnWhat)
+
+            print(update_return_date())
+            if update_return_date(
+            ) != "Item has already been returned." and update_return_date(
+            ) != "Try again":
+                return_to_inventory()
+                print("Thanks for returning the " + returnWhat + "!")
 
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
