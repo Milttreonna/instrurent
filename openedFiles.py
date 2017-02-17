@@ -18,6 +18,12 @@ item_dict = {}
 week_dict = {}
 total_dict = {}
 return_dict = {}
+revenue_dict = {}
+# revenueString = ""
+
+with open("employee.txt", "r") as revenueFile:
+    revenue = revenueFile.read()
+    revenue = float(revenue[:-1])
 
 with open("emails.txt", "r") as emailFile:
     emails = emailFile.read().split()

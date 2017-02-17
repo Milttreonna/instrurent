@@ -48,7 +48,7 @@ def customer_search():
     searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
     results = ""
     results += "Results: "
-    for line in transactionline:
+    for line in trans_file:
         if searchWhat in line:
             results += ("\n" + line + "\n")
     if results == "Results: ":
@@ -59,8 +59,7 @@ def customer_search():
 
 def history():
     all_history = ""
-    print("Here's our history log:\n")
-    for line in transactionline:
+    for line in trans_file:
         all_history += ("\n" + line + "\n")
     return all_history
 
@@ -107,7 +106,11 @@ def get_customer_total(weeks, item):
 
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
-
+    revenueString = ""
+    revenueString += str(add_tax(total))
+    newRevenue = revenue + (float(revenueString))
+    with open("employee.txt", "w") as revenueFile:
+        revenueFile.write(str(newRevenue))
     print("Total to rent:")
     return ('\033[1m' + format_total(total) + '\033[0m')
 
@@ -227,6 +230,11 @@ def itemInfo():
         userInfo_lst.append(item_dict)
         total_dict["Total"] = (format_total(buy_total))
         userInfo_lst.append(total_dict)
+        revenueString = ""
+        revenueString += str(add_tax(buy_total))
+        newRevenue = revenue + (float(revenueString))
+        with open("employee.txt", "w") as revenueFile:
+            revenueFile.write(str(newRevenue))
         return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
     elif customerChoice == "r":
@@ -247,7 +255,8 @@ def confirm_trans():
             for d in dict:
                 output += d + " " + str(dict[d]) + "\n"
             inventoryFile.write(output)
-        return ("Confirmed")
+        print("Confirmed")
+        retrun(customer_receipt())
     elif confirm == "cancel":
         print("Canceling . . .")
         sys.exit()
@@ -259,70 +268,70 @@ def confirm_trans():
 def return_to_inventory():
     if "clarinet" in returnWhat:
         if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Clarinet'] = int(dict["Clarinet"]) + 1
 
     elif "piano" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Piano"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Piano'] = int(dict["Piano"]) + 1
 
     elif "violin" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Violin"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Violin'] = int(dict["Violin"]) + 1
 
     elif "electric" in returnWhat or returnWhat == "electricguitar":
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Electric-guitar"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Electric-guitar'] = int(dict["Electric-guitar"]) + 1
 
     elif "acoustic" in returnWhat or returnWhat == "acousticguitar":
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Acoustic-guitar"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Acoustic-guitar'] = int(dict["Acoustic-guitar"]) + 1
 
     elif "banjo" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Banjo"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Banjo'] = int(dict["Banjo"]) + 1
 
     elif "trumpet" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Trumpet"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Trumpet'] = int(dict["Trumpet"]) + 1
 
     elif "saxophone" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Saxophone"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Saxophone'] = int(dict["Saxophone"]) + 1
 
     elif "conga" in returnWhat:
         if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Conga-set'] = int(dict["Conga-set"]) + 1
 
     elif "drum" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
-            print("Item is out of stock.")
+        if int(dict["Drum-set"]) >= 10:
+            print("All items are in stock.")
             sys.exit()
         else:
             dict['Drum-set'] = int(dict["Drum-set"]) + 1
@@ -391,6 +400,7 @@ if __name__ == '__main__':
             print("To search a date: m-da-year\nExample: 8-10-1998")
             print(customer_search())
         elif customerChoice == "h":
+            print("Here's our history log:\n")
             print(history())
         elif customerChoice == "q":
             print("Canceling . . .")
@@ -400,7 +410,12 @@ if __name__ == '__main__':
             sys.exit()
 
     elif user == "employee":
-        print("nothing")
+        print("Transactions:\n")
+        print(history())
+
+        print("Revenue:", newRevenue)
+        # revenue += float(int(revenueString))
+
     else:
         print("Invalid. Try again.")
         sys.exit()
