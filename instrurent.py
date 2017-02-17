@@ -346,9 +346,6 @@ def update_return_date():
         elif returnWhat == "q":
             print("Canceling. . .")
             sys.exit()
-        # elif returnWhat not in line:
-        #     return ("You haven't rented that instrument out.")
-
         elif userEmail in line and returnWhat in line and "not returned" not in line and "{'Action': 'b'}" not in line:
             return ("Item has already been returned.")
         else:

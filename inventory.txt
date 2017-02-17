@@ -1,10 +1,10 @@
-Trumpet 10
-Banjo 10
 Electric-guitar 9
+Banjo 10
+Piano 9
+Trumpet 10
+Conga-set 10
+Acoustic-guitar 9
+Violin 9
 Clarinet 10
 Drum-set 9
 Saxophone 0
-Violin 9
-Conga-set 10
-Piano 10
-Acoustic-guitar 9
