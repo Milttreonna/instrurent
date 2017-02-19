@@ -109,6 +109,7 @@ def get_customer_total(weeks, item):
     revenueString = ""
     revenueString += str(add_tax(total))
     newRevenue = revenue + (float(revenueString))
+    newRevenue= format_total(newRevenue)
     with open("employee.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
     print("Total to rent:")
@@ -233,6 +234,7 @@ def itemInfo():
         revenueString = ""
         revenueString += str(add_tax(buy_total))
         newRevenue = revenue + (float(revenueString))
+        newRevenue= format_total(newRevenue)
         with open("employee.txt", "w") as revenueFile:
             revenueFile.write(str(newRevenue))
         return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
@@ -415,7 +417,7 @@ if __name__ == '__main__':
         print("Transactions:\n")
         print(history())
 
-        print("Revenue:", newRevenue)
+        print("Revenue:", revenue)
         # revenue += float(int(revenueString))
 
     else:
