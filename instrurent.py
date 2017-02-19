@@ -256,7 +256,7 @@ def confirm_trans():
                 output += d + " " + str(dict[d]) + "\n"
             inventoryFile.write(output)
         print("Confirmed")
-        retrun(customer_receipt())
+        return(customer_receipt())
     elif confirm == "cancel":
         print("Canceling . . .")
         sys.exit()
