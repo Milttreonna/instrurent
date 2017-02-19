@@ -21,7 +21,7 @@ def validEmail():
         else:
             print("New user")
             #writes the user's email to the email file
-            with open("emails.csv", "a") as emailFile:
+            with open("emails.txt", "a") as emailFile:
                 emailFile.write(userEmail + '\n')
             userInfo_lst.append(userEmail)
             date_dict["Date"] = (
