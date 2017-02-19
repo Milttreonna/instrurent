@@ -269,7 +269,7 @@ def confirm_trans():
 
 def return_to_inventory():
     if "clarinet" in returnWhat:
-        if int(dict["Conga-set"]) >= 10:
+        if int(dict["Clarinet"]) >= 10:
             print("All items are in stock.")
             sys.exit()
         else:
