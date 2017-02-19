@@ -1,6 +1,6 @@
 Acoustic-guitar 10
 Conga-set 10
-Violin 9
+Violin 10
 Trumpet 10
 Drum-set 10
 Clarinet 10
