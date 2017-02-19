@@ -417,7 +417,7 @@ if __name__ == '__main__':
         print("Transactions:\n")
         print(history())
 
-        print("Revenue:", revenue)
+        print("Revenue:", format_total(revenue))
         # revenue += float(int(revenueString))
 
     else:
