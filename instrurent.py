@@ -370,6 +370,7 @@ def customer_receipt():
     return("Receipt")
 
 if __name__ == '__main__':
+    print("Hello! Welcome to Instru-Rent!")
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
         print("Enter Q to quit\n")

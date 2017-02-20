@@ -19,7 +19,7 @@ week_dict = {}
 total_dict = {}
 return_dict = {}
 revenue_dict = {}
-# revenueString = ""
+
 
 with open("employee.txt", "r") as revenueFile:
     revenue = revenueFile.read()
