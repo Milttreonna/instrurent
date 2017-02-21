@@ -90,11 +90,7 @@ def show_inventory():
 #     return "${0:.2f}".format(total)
 #
 #
-# def rent_price(price):
-#     '''Takes the instrument's price and gets 13 percent of it'''
-#     rent = round(price * .13, 2)
-#     return rent
-#
+
 #
 # def how_many_weeks():
 #     '''asks the user how many weeks they would like to rent out the instrument
