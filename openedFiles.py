@@ -32,7 +32,7 @@ with open("inventory.txt", 'r') as inventoryFile:
     dict = {inventory[line]: inventory[line + 1]
             for line in range(0, len(inventory), 2)}
     quantity = inventory[1::2]
-    instruments = inventory[::2]
+    instruments = inventory[2::2]
 with open("transactions.txt", 'r') as transactionFile:
     trans_file = transactionFile.readlines()
     # transactionhistory = transactionFile.read()

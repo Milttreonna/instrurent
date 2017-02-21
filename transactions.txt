@@ -1,1 +1,11 @@
-\
+
+['onna@gmail.com', {'Date': '2-19-2017'}, {'Action': 'r'}, {'Item': 'conga'}, {'Weeks rented': 2}, {'Total': '$75.12'}, {'Return date': '2-19-2017'}]
+['onna@gmail.com', {'Date': '2-19-2017'}, {'Action': 'r'}, {'Item': 'clarinet'}, {'Weeks rented': 3}, {'Total': '$489.09'}, {'Return date': '2-21-2017'}]
+['onna@gmail.com', {'Date': '2-19-2017'}, {'Action': 'r'}, {'Item': 'clarinet'}, {'Weeks rented': 3}, {'Total': '$489.09'}, {'Return date': '2-21-2017'}]
+['onna@gmail.com', {'Date': '2-19-2017'}, {'Action': 'r'}, {'Item': 'banjo'}, {'Weeks rented': 2}, {'Total': '$133.26'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Item': 'clarinet'}, {'Weeks rented': 2}, {'Total': '$326.06'}, {'Return date': '2-21-2017'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Item': 'piano'}, {'Total': '$1820.06'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Return date': 'not returned'}]
