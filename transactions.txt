@@ -9,3 +9,6 @@
 ['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Return date': 'not returned'}]
 ['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Return date': 'not returned'}]
 ['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'r'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Item': 'clarinet'}, {'Return date': 'not returned'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Item': 'banjo'}, {'Total': '$469.73'}]
+['onna@gmail.com', {'Date': '2-21-2017'}, {'Action': 'b'}, {'Item': 'clarinet'}, {'Total': '$1254.03'}, {'Return date': 'not returned'}]

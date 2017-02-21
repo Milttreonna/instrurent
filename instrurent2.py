@@ -3,16 +3,17 @@ from openedFiles import *
 import sys
 
 #this would be core
-information=[["acoustic-guitar","10","439.99" ],
-["trumpets","10","2438.99"],
-["clarinets","10","1171.99"],
-["pianos","10","1700.99"],
-["violins","10","699.99"],
-["saxophones","10","3153.99"],
-["electric-guitars","10","899.99"],
-["drums","10","910.00"],
-["banjos","10","439.00"],
-["congas","10","269.99"]]
+information=[["acoustic-guitar","10","439.99","57.20" ],
+["trumpets","10","2438.99","317.07"],
+["clarinets","10","1171.99","152.36"],
+["pianos","10","1700.99","221.13"],
+["violins","10","699.99","91.00"],
+["saxophones","10","3153.99","410.02"],
+["electric-guitars","10","899.99","117.00"],
+["drums","10","910.00","118.30"],
+["banjos","10","439.00","62.27"],
+["congas","10","269.99", "35.10"]]
+
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
@@ -76,75 +77,77 @@ def show_inventory():
 #         all_history += ("\n" + line + "\n")
 #     return all_history
 
-#
-# def add_tax(p):
-#     ''' Adds 7% sales tax to rent and returns the total'''
-#     tax = p * .07
-#     p += tax
-#     total = round(p, 2)
-#     return total
-#
-#
-# def format_total(total):
-#     '''Returns formatted total '''
-#     return "${0:.2f}".format(total)
-#
-#
 
-#
-# def how_many_weeks():
-#     '''asks the user how many weeks they would like to rent out the instrument
-#     and returns it '''
-#     weeks = ""
-#     for l in (range(4)):
-#         rentTime = int(input(
-#             "How many weeks would you like to rent it?(1-3 only)\n"))
-#         weeks += str(rentTime)
-#         if rentTime <= 3:
-#             break
-#
-#     week_dict["Weeks rented"] = rentTime
-#     userInfo_lst.append(week_dict)
-#     return int(weeks)
-#
-#
-# def get_customer_total(weeks, item):
-#     '''takes the price to rent the instrument, adds tax to it and multiplies it
-#     by the number of weeks the user would like to rent it out '''
-#     total = item * weeks
-#
-#     total_dict["Total"] = (format_total(total))
-#     userInfo_lst.append(total_dict)
-#     revenueString = ""
-#     revenueString += str(add_tax(total))
-#     newRevenue = revenue + (float(revenueString))
-#     newRevenue= round(newRevenue,2)
-#     with open("employee.txt", "w") as revenueFile:
-#         revenueFile.write(str(newRevenue))
-#     print("Total to rent:")
-#     return ('\033[1m' + format_total(total) + '\033[0m')
+def add_tax(p):
+    ''' Adds 7% sales tax to rent and returns the total'''
+    tax = p * .07
+    p += tax
+    total = round(p, 2)
+    return total
 
-def itemInfo(whatInstrument):
-     for line in information:
-        if whatInstrument in line[0]:
-            # print(dict)
-            item=line[0]
-            cost=float(line[2])
-            rent_total = add_tax(rent_price(cost))
-            buy_total = add_tax(cost)
-            if int(dict[item])<=0:
-                return("Item is out of stock.")
-                sys.exit()
-            else:
-                dict[item] = int(dict[item]) - 1
-        elif whatInstrument == "q":
-            print("Canceling. . .")
-            sys.exit()
+
+def format_total(total):
+    '''Returns formatted total '''
+    return "${0:.2f}".format(total)
+
+
+def how_many_weeks():
+    '''asks the user how many weeks they would like to rent out the instrument
+    and returns it '''
+    weeks = ""
+    for l in (range(4)):
+        rentTime = int(input(
+            "How many weeks would you like to rent it?(1-3 only)\n"))
+        weeks += str(rentTime)
+        if rentTime <= 3:
+            break
+
+    week_dict["Weeks rented"] = rentTime
+    userInfo_lst.append(week_dict)
+    return int(weeks)
+
+
+def get_customer_total(weeks, item):
+    '''takes the price to rent the instrument, adds tax to it and multiplies it
+    by the number of weeks the user would like to rent it out '''
+    total = item * weeks
+
+    total_dict["Total"] = (format_total(total))
+    userInfo_lst.append(total_dict)
+    revenueString = ""
+    revenueString += str(add_tax(total))
+    newRevenue = revenue + (float(revenueString))
+    newRevenue= round(newRevenue,2)
+    with open("employee.txt", "w") as revenueFile:
+        revenueFile.write(str(newRevenue))
+    print("Total to rent:")
+    return ('\033[1m' + format_total(total) + '\033[0m')
+
+# def itemInfo(whatInstrument):
+#      for line in information:
+#         if whatInstrument in line[0]:
+#             # print(dict)
+#             item=line[0]
+#             print(item)
+#             cost=float(line[2])
+#             rent_total = add_tax((cost))
+#             buy_total = add_tax(cost)
+#             print(int(dict[item]))
+#             if int(dict[item])<=0:
+#                 print("Item is out of stock.")
+#                 sys.exit()
+#             else:
+#                 dict[item] = int(dict[item]) - 1
+#         elif whatInstrument == "q":
+#             print("Canceling. . .")
+#             sys.exit()
 
         # else:
             # print("Invalid answer")
             # return itemInfo(whatInstrument)
 
+        #
+        # return (get_customer_total(how_many_weeks(), rent_total))
 
 
 def confirm_trans():
@@ -267,9 +270,12 @@ def confirm_trans():
 #     return ("Done")
 #
 # def customer_receipt():
-
+#     print("You spent hella money for no reason.")
 #     return("Receipt")
 
+def add_item(whatInstrument):
+        item_dict["Item"] = whatInstrument
+        userInfo_lst.append(item_dict)
 
 def add_not_returned():
     return_dict["Return date"] = "not returned"
@@ -278,6 +284,41 @@ def add_not_returned():
 def add_action(customerChoice):
     option_dict["Action"] = customerChoice
     userInfo_lst.append(option_dict)
+
+
+
+def get_buy_total(total):
+    total_dict["Total"] = (format_total(total))
+    userInfo_lst.append(total_dict)
+    revenueString = ""
+    revenueString += str(total)
+    newRevenue = revenue + (float(revenueString))
+    newRevenue= round(newRevenue, 2)
+    with open("employee.txt", "w") as revenueFile:
+        revenueFile.write(str(newRevenue))
+    return ("\nTotal: " + '\033[1m' + str(total) + '\033[0m')
+
+
+def buy_item(whatInstrument):
+     for line in information:
+        if whatInstrument in line[0]:
+            item=line[0]
+            print(item)
+            cost=float(line[2])
+            total = add_tax(cost)
+            print(get_buy_total(total))
+            print(int(dict[item]))
+            if int(dict[item])<=0:
+                print("Item is out of stock.")
+                sys.exit()
+            else:
+                dict[item] = int(dict[item]) - 1
+                add_not_returned()
+                print(userInfo_lst)
+                print(confirm_trans())
+        elif whatInstrument == "q":
+            print("Canceling. . .")
+            sys.exit()
 
 if __name__ == '__main__':
     print("Hello! Welcome to Instru-Rent!")
@@ -294,37 +335,33 @@ if __name__ == '__main__':
         customerChoice = input("What would you like to do?").lower().strip()
         add_action(customerChoice)
         print(show_inventory())
+
         whatInstrument = input("What instrument?  ").lower().strip()
 
         if customerChoice == "b":
+            add_item(whatInstrument)
+            print(buy_item(whatInstrument))
+            # print(itemInfo(whatInstrument))
 
-            print(itemInfo(whatInstrument))
-            add_not_returned()
-            item_dict["Item"] = whatInstrument
-            userInfo_lst.append(item_dict)
-            total_dict["Total"] = (format_total(buy_total))
-            userInfo_lst.append(total_dict)
-            revenueString = ""
-            revenueString += str(add_tax(buy_total))
-            newRevenue = revenue + (float(revenueString))
-            newRevenue= round(newRevenue, 2)
-            with open("employee.txt", "w") as revenueFile:
-                revenueFile.write(str(newRevenue))
-            print ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
 
-            print(confirm_trans())
 
-        # elif customerChoice == "r":
-        #     print(itemInfo(whatInstrument))
-        #     add_not_returned()
+
+
         #
-        #
-        #     print(confirm_trans())
-        #
+        # elif customerChoice == "r"
 
 
             # if customerChoice == "b":
 
+            #     total_dict["Total"] = (format_total(buy_total))
+            #     userInfo_lst.append(total_dict)
+            #     revenueString = ""
+            #     revenueString += str(add_tax(buy_total))
+            #     newRevenue = revenue + (float(revenueString))
+            #     newRevenue= round(newRevenue, 2)
+            #     with open("employee.txt", "w") as revenueFile:
+            #         revenueFile.write(str(newRevenue))
+            #     return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
             #
             # elif customerChoice == "r":
             #     item_dict["Item"] = whatInstrument
