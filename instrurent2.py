@@ -271,7 +271,7 @@ def confirm_trans():
 #     return ("Done")
 #
 # def customer_receipt():
-#     print("You spent hella money for no reason.")
+
 #     return("Receipt")
 
 

@@ -367,7 +367,7 @@ def update_return_date():
     return ("Done")
 
 def customer_receipt():
-    print("You spent hella money for no reason.")
+
     return("Receipt")
 
 if __name__ == '__main__':
