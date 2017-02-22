@@ -5,7 +5,6 @@ import sys
 #this would be core
 
 
-
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
 
@@ -30,8 +29,7 @@ def validEmail():
             userInfo_lst.append(date_dict)
             return ("Valid email")
     elif userEmail == "q":
-        print("Canceling. . . ")
-        sys.exit()
+        print(cancel_it())
     else:
         print("Invalid email")
         sys.exit()
@@ -40,33 +38,29 @@ def validEmail():
 def show_inventory():
     ''' Returns the formatted inventory in a different color'''
     show = ''
-    print(inventory)
-    print(dict)
-    for i, q in zip(instruments, quantity):
-        show += ('\033[1m' + i + ": " + q + '\033[0m' + "\n")
+    for i in (inventory):
+        show += ('\033[1m' + i + '\033[0m' + "\n")
     return (show)
 
 
+def customer_search():
+    searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
+    results = ""
+    results += "Results: "
+    for line in trans_file:
+        if searchWhat in line:
+            results += ("\n" + line + "\n")
+    if results == "Results: ":
+        return ("No results found.")
+    else:
+        return (results)
 
-#
-# def customer_search():
-#     searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
-#     results = ""
-#     results += "Results: "
-#     for line in trans_file:
-#         if searchWhat in line:
-#             results += ("\n" + line + "\n")
-#     if results == "Results: ":
-#         return ("No results found.")
-#     else:
-#         return (results)
-#
-#
-# def history():
-#     all_history = ""
-#     for line in trans_file:
-#         all_history += ("\n" + line + "\n")
-#     return all_history
+
+def history():
+    all_history = ""
+    for line in trans_file:
+        all_history += ("\n" + line + "\n")
+    return all_history
 
 
 def add_tax(p):
@@ -99,7 +93,6 @@ def how_many_weeks():
             break
     add_weeks_rented(rentTime)
 
-    print(confirm_trans())
     return int(weeks)
 
 
@@ -113,7 +106,7 @@ def get_customer_total(weeks, item):
     revenueString = ""
     revenueString += str(add_tax(total))
     newRevenue = revenue + (float(revenueString))
-    newRevenue= round(newRevenue,2)
+    newRevenue = round(newRevenue, 2)
     with open("employee.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
     print("Total to rent:")
@@ -138,15 +131,16 @@ def get_customer_total(weeks, item):
 #             print("Canceling. . .")
 #             sys.exit()
 
-        # else:
-            # print("Invalid answer")
-            # return itemInfo(whatInstrument)
+# else:
+# print("Invalid answer")
+# return itemInfo(whatInstrument)
 
-        #
-        # return (get_customer_total(how_many_weeks(), rent_total))
+#
+# return (get_customer_total(how_many_weeks(), rent_total))
 
 
 def confirm_trans():
+    add_not_returned()
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
         with open("transactions.txt", "a") as transactionFile:
@@ -157,10 +151,9 @@ def confirm_trans():
                 output += d + " " + str(dict[d]) + "\n"
             inventoryFile.write(output)
         print("Confirmed")
-        return(customer_receipt())
+        return (customer_receipt())
     elif confirm == "cancel":
-        print("Canceling . . .")
-        sys.exit()
+        print(cancel_it())
     else:
         print("Invalid.")
         sys.exit()
@@ -265,22 +258,28 @@ def confirm_trans():
 #         transactionFile.write(transactionString)
 #     return ("Done")
 #
-# def customer_receipt():
-#     print("You spent hella money for no reason.")
-#     return("Receipt")
+def customer_receipt():
+    art1 = "                  "
+    print("\n¸♬·¯·♩¸¸♪·¯·♫¸¸Here's your receipt!¸¸♬·¯·♩¸¸♪·¯·♫¸¸\n")
+    receipt = ""
+    for line in userInfo_lst:
+        receipt += (art1 + str(line) + "\n")
+    return receipt.replace("{", "").replace("}", "").replace("'", "")
+
 
 def add_item(whatInstrument):
-        item_dict["Item"] = whatInstrument
-        userInfo_lst.append(item_dict)
+    item_dict["Item"] = whatInstrument
+    userInfo_lst.append(item_dict)
+
 
 def add_not_returned():
     return_dict["Return date"] = "not returned"
     userInfo_lst.append(return_dict)
 
+
 def add_action(customerChoice):
     option_dict["Action"] = customerChoice
     userInfo_lst.append(option_dict)
-
 
 
 def get_buy_total(total):
@@ -289,7 +288,7 @@ def get_buy_total(total):
     revenueString = ""
     revenueString += str(total)
     newRevenue = revenue + (float(revenueString))
-    newRevenue= round(newRevenue, 2)
+    newRevenue = round(newRevenue, 2)
     with open("employee.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
     return ("\nTotal: " + '\033[1m' + str(total) + '\033[0m')
@@ -299,54 +298,71 @@ def buy_item(whatInstrument):
     add_item(whatInstrument)
     for line in information:
         if whatInstrument in line[0]:
-            item=line[0]
-            print(item)
-            cost=float(line[2])
+            item = line[0]
+
+            cost = float(line[2])
             total = add_tax(cost)
             print(get_buy_total(total))
-            print(int(dict[item]))
-            if int(dict[item])<=0:
+            if int(dict[item]) <= 0:
                 print("Item is out of stock.")
                 sys.exit()
             else:
                 dict[item] = int(dict[item]) - 1
-                add_not_returned()
-                print(userInfo_lst)
-                print(confirm_trans())
-        elif whatInstrument == "q":
-            print("Canceling. . .")
-            sys.exit()
+                return (confirm_trans())
+    if whatInstrument not in information:
+        return ("Invalid answer.")
+
+
+def return_item(returnWhat):
+    for line in information:
+        if returnWhat in line[0]:
+            item = line[0]
+            if int(dict[item]) >= 10:
+                print("All of those items are in stock.")
+                sys.exit()
+            else:
+                dict[item] = int(dict[item]) + 1
+
+                with open("inventory.txt", 'w') as inventoryFile:
+                    return_output = ''
+                    for d in dict:
+                        return_output += d + " " + str(dict[d]) + "\n"
+                    inventoryFile.write(return_output)
+                return ("Thanks for returning!")
+    if returnWhat not in information:
+        return ("Invalid answer.")
+
 
 def rent_item(whatInstrument):
     add_item(whatInstrument)
     for line in information:
         if whatInstrument in line[0]:
-            item=line[0]
-            print(item)
-            cost=float(line[3])
+            item = line[0]
+            cost = float(line[3])
             total = add_tax(cost)
-            print(get_buy_total(total))
-            print(int(dict[item]))
-            if int(dict[item])<=0:
+            if int(dict[item]) <= 0:
                 print("Item is out of stock.")
                 sys.exit()
             else:
                 dict[item] = int(dict[item]) - 1
-                add_not_returned()
-                print(userInfo_lst)
                 print("\nPrice to rent (per week): " + '\033[1m' + str(total) +
-                              '\033[0m')
-        elif whatInstrument == "q":
-            print("Canceling. . .")
-            sys.exit()
+                      '\033[0m')
+                print(get_customer_total(how_many_weeks(), total))
+                return (confirm_trans())
+    if whatInstrument not in information:
+        return ("Invalid answer.")
 
-    return (get_customer_total(how_many_weeks(), total))
+
+def cancel_it():
+    print("Canceling. . .")
+    sys.exit()
+
 
 if __name__ == '__main__':
     print("Hello! Welcome to Instru-Rent!")
     user = input("Customer or Employee?").lower().strip()
     if user == "customer":
-        print("Enter Q to quit\n")
+        print("\nEnter Q to quit\n")
         userEmail = input("Enter your email address: ")
         userEmail = userEmail.lower().replace(" ", "")
         print(validEmail())
@@ -355,70 +371,53 @@ if __name__ == '__main__':
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= all history")
 
         customerChoice = input("What would you like to do?").lower().strip()
-        add_action(customerChoice)
-        print(show_inventory())
+        if customerChoice == "b" or customerChoice == "r":
+            add_action(customerChoice)
+            print(show_inventory())
+            whatInstrument = input("What instrument?  ").lower().strip()
 
-        whatInstrument = input("What instrument?  ").lower().strip()
+            # if whatInstrument not in inventory:
+            #     print("Invalid answer.")
+            #     sys.exit()
+            if whatInstrument == "q":
+                print(cancel_it())
 
-        if customerChoice == "b":
-            print(buy_item(whatInstrument))
-            # print(itemInfo(whatInstrument))
-        elif customerChoice == "r":
-            print(rent_item(whatInstrument))
+            if customerChoice == "b":
+                print(buy_item(whatInstrument))
+                # print(itemInfo(whatInstrument))
+            elif customerChoice == "r":
+                print(rent_item(whatInstrument))
 
-
-
-
-
-            # if customerChoice == "b":
-
-            #     total_dict["Total"] = (format_total(buy_total))
-            #     userInfo_lst.append(total_dict)
-            #     revenueString = ""
-            #     revenueString += str(add_tax(buy_total))
-            #     newRevenue = revenue + (float(revenueString))
-            #     newRevenue= round(newRevenue, 2)
-            #     with open("employee.txt", "w") as revenueFile:
-            #         revenueFile.write(str(newRevenue))
-            #     return ("\nTotal to buy: " + '\033[1m' + str(buy_total) + '\033[0m')
+        elif customerChoice == "rt":
+            returnWhat = input("Which item are you returning? ").lower().strip(
+            )
+            print(return_item(returnWhat))
             #
-            # elif customerChoice == "r":
-            #     item_dict["Item"] = whatInstrument
-            #     userInfo_lst.append(item_dict)
-            #     print("\nPrice to rent (per week): " + '\033[1m' + str(rent_total) +
-            #           '\033[0m')
+            #         print(update_return_date())
+            #         if update_return_date(
+            #         ) != "Item has already been returned." and update_return_date(
+            #         ) != "You haven't rented that instrument out.":
+            #             return_to_inventory()
+            #             print("Thanks for returning the " + returnWhat + "!")
+            #
+        elif customerChoice == "s":
+            print("To search a date: m-da-year\nExample: 8-10-1998")
+            print(customer_search())
+        elif customerChoice == "h":
+            print("Here's our history log:\n")
+            print(history())
+        elif customerChoice == "q":
+            print(cancel_it())
+        else:
+            print("Invalid Answer.")
+            sys.exit()
 
-    #     elif customerChoice == "rt":
-    #         returnWhat = input("Which item are you returning? ").lower().strip(
-    #         )
-    #
-    #         print(update_return_date())
-    #         if update_return_date(
-    #         ) != "Item has already been returned." and update_return_date(
-    #         ) != "You haven't rented that instrument out.":
-    #             return_to_inventory()
-    #             print("Thanks for returning the " + returnWhat + "!")
-    #
-    #     elif customerChoice == "s":
-    #         print("To search a date: m-da-year\nExample: 8-10-1998")
-    #         print(customer_search())
-    #     elif customerChoice == "h":
-    #         print("Here's our history log:\n")
-    #         print(history())
-    #     elif customerChoice == "q":
-    #         print("Canceling . . .")
-    #         sys.exit()
-    #     else:
-    #         print("Invalid Answer.")
-    #         sys.exit()
-    #
-    # elif user == "employee":
-    #     print("Transactions:\n")
-    #     print(history())
-    #
-    #     print("Revenue:", format_total(revenue))
-    #     # revenue += float(int(revenueString))
-    #
-    # else:
-    #     print("Invalid. Try again.")
-    #     sys.exit()
+    elif user == "employee":
+        print("Transactions:\n")
+        print(history())
+        print("Revenue:", format_total(revenue))
+        # revenue += float(int(revenueString))
+
+    else:
+        print("Invalid. Try again.")
+        sys.exit()
