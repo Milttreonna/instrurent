@@ -3,16 +3,7 @@ from openedFiles import *
 import sys
 
 #this would be core
-information=[["acoustic-guitar","10","439.99","57.20" ],
-["trumpets","10","2438.99","317.07"],
-["clarinets","10","1171.99","152.36"],
-["pianos","10","1700.99","221.13"],
-["violins","10","699.99","91.00"],
-["saxophones","10","3153.99","410.02"],
-["electric-guitars","10","899.99","117.00"],
-["drums","10","910.00","118.30"],
-["banjos","10","439.00","62.27"],
-["congas","10","269.99", "35.10"]]
+
 
 
 def validEmail():
@@ -91,6 +82,11 @@ def format_total(total):
     return "${0:.2f}".format(total)
 
 
+def add_weeks_rented(rentTime):
+    week_dict["Weeks rented"] = rentTime
+    userInfo_lst.append(week_dict)
+
+
 def how_many_weeks():
     '''asks the user how many weeks they would like to rent out the instrument
     and returns it '''
@@ -101,9 +97,9 @@ def how_many_weeks():
         weeks += str(rentTime)
         if rentTime <= 3:
             break
+    add_weeks_rented(rentTime)
 
-    week_dict["Weeks rented"] = rentTime
-    userInfo_lst.append(week_dict)
+    print(confirm_trans())
     return int(weeks)
 
 
@@ -300,7 +296,8 @@ def get_buy_total(total):
 
 
 def buy_item(whatInstrument):
-     for line in information:
+    add_item(whatInstrument)
+    for line in information:
         if whatInstrument in line[0]:
             item=line[0]
             print(item)
@@ -319,6 +316,31 @@ def buy_item(whatInstrument):
         elif whatInstrument == "q":
             print("Canceling. . .")
             sys.exit()
+
+def rent_item(whatInstrument):
+    add_item(whatInstrument)
+    for line in information:
+        if whatInstrument in line[0]:
+            item=line[0]
+            print(item)
+            cost=float(line[3])
+            total = add_tax(cost)
+            print(get_buy_total(total))
+            print(int(dict[item]))
+            if int(dict[item])<=0:
+                print("Item is out of stock.")
+                sys.exit()
+            else:
+                dict[item] = int(dict[item]) - 1
+                add_not_returned()
+                print(userInfo_lst)
+                print("\nPrice to rent (per week): " + '\033[1m' + str(total) +
+                              '\033[0m')
+        elif whatInstrument == "q":
+            print("Canceling. . .")
+            sys.exit()
+
+    return (get_customer_total(how_many_weeks(), total))
 
 if __name__ == '__main__':
     print("Hello! Welcome to Instru-Rent!")
@@ -339,16 +361,13 @@ if __name__ == '__main__':
         whatInstrument = input("What instrument?  ").lower().strip()
 
         if customerChoice == "b":
-            add_item(whatInstrument)
             print(buy_item(whatInstrument))
             # print(itemInfo(whatInstrument))
+        elif customerChoice == "r":
+            print(rent_item(whatInstrument))
 
 
 
-
-
-        #
-        # elif customerChoice == "r"
 
 
             # if customerChoice == "b":
