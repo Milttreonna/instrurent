@@ -313,6 +313,27 @@ def buy_item(whatInstrument):
         return ("Invalid answer.")
 
 
+def update_return_date():
+    transactionString = ""
+    for line in trans_file:
+        if userEmail in line and "not returned" in line and returnWhat in line and "{'Action': 'b'}" not in line:
+            newLine = line.replace("not returned", (
+                str(now.month) + "-" + str(now.day) + "-" + str(now.year)))
+            transactionString += "{0}".format(newLine)
+
+        elif returnWhat == "q":
+            print("Canceling. . .")
+            sys.exit()
+        elif userEmail in line and returnWhat in line and "not returned" not in line and "{'Action': 'b'}" not in line:
+            return ("Item has already been returned.")
+        else:
+            transactionString += "{0}".format(line)
+
+    with open("transactions.txt", "w") as transactionFile:
+        transactionFile.write(transactionString)
+    return ("Done")
+
+
 def return_item(returnWhat):
     for line in information:
         if returnWhat in line[0]:
@@ -328,7 +349,8 @@ def return_item(returnWhat):
                     for d in dict:
                         return_output += d + " " + str(dict[d]) + "\n"
                     inventoryFile.write(return_output)
-                return ("Thanks for returning!")
+                update_return_date()
+                return ("Thanks for returning the " + returnWhat + "!")
     if returnWhat not in information:
         return ("Invalid answer.")
 
@@ -392,14 +414,11 @@ if __name__ == '__main__':
             returnWhat = input("Which item are you returning? ").lower().strip(
             )
             print(return_item(returnWhat))
-            #
-            #         print(update_return_date())
-            #         if update_return_date(
-            #         ) != "Item has already been returned." and update_return_date(
-            #         ) != "You haven't rented that instrument out.":
-            #             return_to_inventory()
-            #             print("Thanks for returning the " + returnWhat + "!")
-            #
+            if update_return_date(
+            ) != "Item has already been returned." and update_return_date(
+            ) != "You haven't rented that instrument out.":
+                return_to_inventory()
+
         elif customerChoice == "s":
             print("To search a date: m-da-year\nExample: 8-10-1998")
             print(customer_search())
