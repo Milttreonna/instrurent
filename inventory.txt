@@ -1,10 +1,10 @@
 banjos 10
-pianos 9
-clarinets 2
+pianos 10
+clarinets 10
 electric-guitars 10
 violins 10
 acoustic-guitars 10
 drums 10
 congas 10
-trumpets 9
+trumpets 10
 saxophones 10
