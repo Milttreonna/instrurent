@@ -2,8 +2,6 @@ from core import *
 from openedFiles import *
 import sys
 
-#this would be core
-
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
