@@ -1,2 +1,0 @@
-['onna@gmail.com', {'Date': '2-24-2017'}, {'Action': 'r'}, {'Item': 'violin'}, {'Weeks rented': 3}, {'Total': '$292.11'}, {'Return date': '2-24-2017'}]
-['onna123@gmail.com', {'Date': '2-24-2017'}, {'Action': 'r'}, {'Item': 'conga'}, {'Weeks rented': 3}, {'Total': '$112.68'}, {'Return date': '2-24-2017'}]

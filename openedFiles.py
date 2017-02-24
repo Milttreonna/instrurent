@@ -1,15 +1,5 @@
 import datetime
 
-information = [["acoustic-guitars", "10", "439.99", "57.20"],
-               ["trumpets", "10", "2438.99", "317.07"],
-               ["clarinets", "10", "1171.99", "152.36"],
-               ["pianos", "10", "1700.99", "221.13"],
-               ["violins", "10", "699.99", "91.00"],
-               ["saxophones", "10", "3153.99", "410.02"],
-               ["electric-guitars", "10", "899.99", "117.00"],
-               ["drums", "10", "910.00", "118.30"],
-               ["banjos", "10", "439.00", "62.27"],
-               ["congas", "10", "269.99", "35.10"]]
 now = datetime.datetime.now()
 userInfo_lst = []
 date_dict = {}

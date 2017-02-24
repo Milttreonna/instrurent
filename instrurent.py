@@ -2,6 +2,17 @@ from core import *
 from openedFiles import *
 import sys
 
+information = [["acoustic-guitars", "10", "439.99", "57.20"],
+               ["trumpets", "10", "2438.99", "317.07"],
+               ["clarinets", "10", "1171.99", "152.36"],
+               ["pianos", "10", "1700.99", "221.13"],
+               ["violins", "10", "699.99", "91.00"],
+               ["saxophones", "10", "3153.99", "410.02"],
+               ["electric-guitars", "10", "899.99", "117.00"],
+               ["drums", "10", "910.00", "118.30"],
+               ["banjos", "10", "439.00", "62.27"],
+               ["congas", "10", "269.99", "35.10"]]
+
 
 def validEmail():
     '''Takes user's email and checks to see if it's valid or not'''
@@ -131,15 +142,15 @@ if __name__ == '__main__':
             print(show_inventory())
             whatInstrument = input("What instrument?  ").lower().strip()
             whatInstrument = whatInstrument.replace(" ", "-")
+            print(item_info(whatInstrument))
+
             if whatInstrument == "q":
                 print(cancel_it())
 
             if customerChoice == "b":
-                print(item_info(whatInstrument))
                 print(buy_item(whatInstrument))
 
             elif customerChoice == "r":
-                print(item_info(whatInstrument))
                 print(rent_item(whatInstrument))
 
         elif customerChoice == "rt":

@@ -168,4 +168,4 @@ def get_buy_total(total):
     newRevenue = round(newRevenue, 2)
     with open("revenue.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
-    return ("\nTotal: " + '\033[1m' + str(total) + '\033[0m')
+    return "\nTotal: " + str(total)
