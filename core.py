@@ -25,6 +25,7 @@ def format_total(total):
 
 
 def add_weeks_rented(rentTime):
+    '''adds weeks rented to dictionary of user's info '''
     week_dict["Weeks rented"] = rentTime
     userInfo_lst.append(week_dict)
 
@@ -63,6 +64,7 @@ def get_customer_total(weeks, item):
 
 
 def confirm_trans():
+    '''Writes to transactions and inventory if the user confirms transaction'''
     add_not_returned()
     confirm = input("Confirm or cancel?").lower().strip()
     if confirm == "confirm":
@@ -83,6 +85,7 @@ def confirm_trans():
 
 
 def customer_receipt():
+    '''returns the customer receipt '''
     art1 = "                  "
     print("\n¸♬·¯·♩¸¸♪·¯·♫¸¸Here's your receipt!¸¸♬·¯·♩¸¸♪·¯·♫¸¸\n")
     receipt = ""
@@ -92,11 +95,13 @@ def customer_receipt():
 
 
 def add_item(whatInstrument):
+    '''adds what item the user is buying/ renting to the dictionary of user's info '''
     item_dict["Item"] = whatInstrument
     userInfo_lst.append(item_dict)
 
 
 def item_info(whatInstrument):
+    '''Takes the instrument that the user wants to rent or buy and gives a description of that item '''
     print("\n\033[1mDescription: \033[0m\n")
     if "clarinet" in whatInstrument:
         return ('\033[1m' + clarinet + '\033[0m')
@@ -124,6 +129,7 @@ def item_info(whatInstrument):
 
 
 def update_return_date(userEmail, returnWhat):
+    '''Takes the users email and and item the user wants to return and updates the return date'''
     transactionString = ""
     for line in trans_file:
         if userEmail in line and "not returned" in line and returnWhat in line and "{'Action': 'b'}" not in line:
@@ -150,16 +156,19 @@ def cancel_it():
 
 
 def add_not_returned():
+    '''adds return date key to dictionary of user's info '''
     return_dict["Return date"] = "not returned"
     userInfo_lst.append(return_dict)
 
 
 def add_action(customerChoice):
+    '''adds what the user is doing to dictionary of user's info '''
     option_dict["Action"] = customerChoice
     userInfo_lst.append(option_dict)
 
 
 def get_buy_total(total):
+    ''' '''
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
     revenueString = ""

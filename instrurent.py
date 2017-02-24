@@ -2,6 +2,7 @@ from core import *
 from openedFiles import *
 import sys
 
+# information = [instrument,quantity, full price, rent price]
 information = [["acoustic-guitars", "10", "439.99", "57.20"],
                ["trumpets", "10", "2438.99", "317.07"],
                ["clarinets", "10", "1171.99", "152.36"],
@@ -15,7 +16,7 @@ information = [["acoustic-guitars", "10", "439.99", "57.20"],
 
 
 def validEmail():
-    '''Takes user's email and checks to see if it's valid or not'''
+    '''Takes user's email if it's valid or not. '''
 
     if "@" and ".com" in userEmail:
         if userEmail in emails:
@@ -45,6 +46,7 @@ def validEmail():
 
 
 def customer_search():
+    '''Asks for keywords to search and return results if any.'''
     searchWhat = input("Enter keyword:  ").lower().replace(" ", "")
     results = ""
     results += "Results: "
@@ -58,6 +60,7 @@ def customer_search():
 
 
 def history():
+    '''Return transaction history from file. '''
     print("Transactions:\n")
     all_history = ""
     for line in trans_file:
@@ -66,11 +69,11 @@ def history():
 
 
 def buy_item(whatInstrument):
+    '''Returns total to buy instrument if the input is correct. Returns "Invalid answer." if input isn't correct.'''
     add_item(whatInstrument)
     for line in information:
         if whatInstrument in line[0]:
             item = line[0]
-
             cost = float(line[2])
             total = add_tax(cost)
             print(get_buy_total(total))
@@ -85,6 +88,7 @@ def buy_item(whatInstrument):
 
 
 def return_item(returnWhat):
+    '''Lets the user return the item if input is valid then it updates inventory and transaction file. If input isn't valid it returns "Invalid answer." '''
     for line in information:
         if returnWhat in line[0]:
             item = line[0]
@@ -106,6 +110,7 @@ def return_item(returnWhat):
 
 
 def rent_item(whatInstrument):
+    ''' Returns total to rent instrument if the input is correct. Returns "Invalid answer." if input isn't correct.'''
     add_item(whatInstrument)
     for line in information:
         if whatInstrument in line[0]:
