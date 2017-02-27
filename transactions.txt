@@ -1,3 +1,0 @@
-['onna@gmail.com', {'Date': '2-27-2017'}, {'Action': 'r'}, {'Item': 'clarinet'}, {'Weeks rented': 3}, {'Total': '$489.09'}, {'Return date': '2-27-2017'}]
-['onna@gmail.com', {'Date': '2-27-2017'}, {'Action': 'b'}, {'Item': 'banjo'}, {'Total': '$469.73'}, {'Return date': 'not returned'}]
-[{'Date': '2-27-2017'}, 'onna@gmail.com', {'Action': 'r'}, {'Item': 'conga'}, {'Weeks rented': 3}, {'Total': '$112.68'}, {'Return date': 'not returned'}]
