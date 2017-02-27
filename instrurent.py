@@ -15,7 +15,7 @@ information = [["acoustic-guitars", "10", "439.99", "57.20"],
                ["congas", "10", "269.99", "35.10"]]
 
 
-def validEmail():
+def valid_email():
     '''Takes user's email if it's valid or not. '''
 
     if "@" and ".com" in userEmail:
@@ -137,7 +137,7 @@ if __name__ == '__main__':
         print("\nEnter Q to quit\n")
         userEmail = input("Enter your email address: ")
         userEmail = userEmail.lower().replace(" ", "")
-        print(validEmail())
+        print(valid_email())
         print(
             "\n(R)= rent| (B)= buy| (RT)= return| (S)= search| (H)= all history")
         customerChoice = input("What would you like to do?").lower().strip()
