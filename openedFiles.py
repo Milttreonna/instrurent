@@ -1,6 +1,6 @@
 import datetime
-
 now = datetime.datetime.now()
+
 userInfo_lst = []
 date_dict = {}
 option_dict = {}
@@ -16,12 +16,13 @@ with open("revenue.txt", "r") as revenueFile:
 
 with open("emails.txt", "r") as emailFile:
     emails = emailFile.read().split()
+with open("transactions.txt", 'r') as transactionFile:
+    trans_file = transactionFile.readlines()
 with open("inventory.txt", 'r') as inventoryFile:
     inventory = inventoryFile.read().split()
     dict = {inventory[line]: inventory[line + 1]
             for line in range(0, len(inventory), 2)}
-with open("transactions.txt", 'r') as transactionFile:
-    trans_file = transactionFile.readlines()
+
 with open("clarinet.txt", 'r') as clarinetFile:
     clarinet = clarinetFile.read()
 with open("drums.txt", 'r') as drumFile:
