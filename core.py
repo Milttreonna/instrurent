@@ -151,6 +151,7 @@ def update_return_date(userEmail, returnWhat):
 
 
 def cancel_it():
+    '''cancels function '''
     print("Canceling. . .")
     sys.exit()
 
@@ -168,7 +169,7 @@ def add_action(customerChoice):
 
 
 def get_buy_total(total):
-    ''' '''
+    '''returns total to buy the item '''
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
     revenueString = ""
