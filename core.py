@@ -152,16 +152,10 @@ def customer_receipt():
     return receipt.replace("{", "").replace("}", "").replace("'", "")
 
 
-def add_weeks_rented(rentTime):
-    '''adds weeks rented to dictionary of user's info '''
-    week_dict["Weeks rented"] = rentTime
-    userInfo_lst.append(week_dict)
-
-
-def add_not_returned():
-    '''adds return date key to dictionary of user's info '''
-    return_dict["Return date"] = "not returned"
-    userInfo_lst.append(return_dict)
+def add_date():
+    date_dict["Date"] = (
+        str(now.month) + "-" + str(now.day) + "-" + str(now.year))
+    userInfo_lst.append(date_dict)
 
 
 def add_action(customerChoice):
@@ -174,6 +168,18 @@ def add_item(whatInstrument):
     '''adds what item the user is buying/ renting to the dictionary of user's info '''
     item_dict["Item"] = whatInstrument
     userInfo_lst.append(item_dict)
+
+
+def add_weeks_rented(rentTime):
+    '''adds weeks rented to dictionary of user's info '''
+    week_dict["Weeks rented"] = rentTime
+    userInfo_lst.append(week_dict)
+
+
+def add_not_returned():
+    '''adds return date key to dictionary of user's info '''
+    return_dict["Return date"] = "not returned"
+    userInfo_lst.append(return_dict)
 
 
 def cancel_it():

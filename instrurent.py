@@ -22,20 +22,15 @@ def valid_email():
         if userEmail in emails:
             #adds email to user's info
             userInfo_lst.append(userEmail)
-            date_dict["Date"] = (
-                str(now.month) + "-" + str(now.day) + "-" + str(now.year))
-            userInfo_lst.append(date_dict)
+            add_date()
             return ("Previous user")
-
         else:
             print("New user")
             #writes the user's email to the email file
             with open("emails.txt", "a") as emailFile:
                 emailFile.write(userEmail + '\n')
             userInfo_lst.append(userEmail)
-            date_dict["Date"] = (
-                str(now.month) + "-" + str(now.day) + "-" + str(now.year))
-            userInfo_lst.append(date_dict)
+            add_date()
             return ("Valid email")
     elif userEmail == "q":
         print(cancel_it())
