@@ -93,7 +93,7 @@ def return_item(returnWhat):
         if returnWhat in line[0]:
             item = line[0]
             if int(dict[item]) >= 10:
-                print("All of those items are in stock.")
+                print("All of those items are now in stock.")
                 sys.exit()
             else:
                 dict[item] = int(dict[item]) + 1
