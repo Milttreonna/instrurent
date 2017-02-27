@@ -5,6 +5,7 @@ import sys
 
 def show_inventory():
     ''' Returns the formatted inventory in a different color'''
+    print("\nInventory:")
     show = ''
     for i in (inventory):
         show += ('\033[1m' + i + '\033[0m' + "\n")
@@ -56,11 +57,11 @@ def how_many_weeks():
     '''asks the user how many weeks they would like to rent out the instrument
     and returns it '''
     weeks = ""
-
-    rentTime = int(input(
-        "How many weeks would you like to rent it?(1-3 only)\n"))
-    weeks += str(rentTime)
-    if rentTime > 3 or rentTime <= 0:
+    rentTime = (input("How many weeks would you like to rent it?(1-3 only)\n"))
+    weeks += (rentTime)
+    if rentTime in "123":
+        rentTime = int(rentTime)
+    else:
         print("Must be between 1-3")
         sys.exit()
     add_weeks_rented(rentTime)
@@ -98,7 +99,7 @@ def get_customer_total(weeks, item):
     total_dict["Total"] = (format_total(total))
     userInfo_lst.append(total_dict)
     revenueString = ""
-    revenueString += str(add_tax(total))
+    revenueString += str((total))
     newRevenue = revenue + (float(revenueString))
     newRevenue = round(newRevenue, 2)
     with open("revenue.txt", "w") as revenueFile:

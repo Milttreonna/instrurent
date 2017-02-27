@@ -18,11 +18,10 @@ information = [["acoustic-guitars", "10", "439.99", "57.20"],
 def valid_email():
     '''Takes user's email if it's valid or not. '''
 
-    if "@" and ".com" in userEmail:
+    if "@" in userEmail and ".com" in userEmail:
         if userEmail in emails:
             #adds email to user's info
             userInfo_lst.append(userEmail)
-            #adds date to user's info
             date_dict["Date"] = (
                 str(now.month) + "-" + str(now.day) + "-" + str(now.year))
             userInfo_lst.append(date_dict)
@@ -122,7 +121,7 @@ def rent_item(whatInstrument):
                 sys.exit()
             else:
                 dict[item] = int(dict[item]) - 1
-                print("\nPrice to rent (per week): " + '\033[1m' + str(total) +
+                print("Price to rent (per week): " + '\033[1m' + str(total) +
                       '\033[0m')
                 print(get_customer_total(how_many_weeks(), total))
                 return (confirm_trans())
