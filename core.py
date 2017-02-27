@@ -153,6 +153,7 @@ def customer_receipt():
 
 
 def add_date():
+    '''adds date to the dictionary of user's info '''
     date_dict["Date"] = (
         str(now.month) + "-" + str(now.day) + "-" + str(now.year))
     userInfo_lst.append(date_dict)
