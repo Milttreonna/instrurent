@@ -8,7 +8,6 @@ item_dict = {}
 week_dict = {}
 total_dict = {}
 return_dict = {}
-revenue_dict = {}
 
 with open("revenue.txt", "r") as revenueFile:
     revenue = revenueFile.read()

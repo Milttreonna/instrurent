@@ -63,7 +63,8 @@ def history():
 
 
 def buy_item(whatInstrument):
-    '''Returns total to buy instrument if the input is correct. Returns "Invalid answer." if input isn't correct.'''
+    '''Returns total to buy instrument if the input is correct.
+     Returns "Invalid answer." if input isn't correct.'''
     add_item(whatInstrument)
     for line in information:
         if whatInstrument in line[0]:

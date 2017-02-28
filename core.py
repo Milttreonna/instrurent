@@ -26,7 +26,8 @@ def get_buy_total(total):
 
 
 def item_info(whatInstrument):
-    '''Takes the instrument that the user wants to rent or buy and gives a description of that item '''
+    '''Takes the instrument that the user wants to
+     rent or buy and gives a description of that item '''
     print("\n\033[1mDescription: \033[0m\n")
     if "clarinet" in whatInstrument:
         return ('\033[1m' + clarinet + '\033[0m')
@@ -54,8 +55,8 @@ def item_info(whatInstrument):
 
 
 def how_many_weeks():
-    '''asks the user how many weeks they would like to rent out the instrument
-    and returns it '''
+    '''asks the user how many weeks they would
+    like to rent out the instrument and returns it '''
     weeks = ""
     rentTime = (input("How many weeks would you like to rent it?(1-3 only)\n"))
     weeks += (rentTime)
@@ -166,7 +167,8 @@ def add_action(customerChoice):
 
 
 def add_item(whatInstrument):
-    '''adds what item the user is buying/ renting to the dictionary of user's info '''
+    '''adds what item the user is buying/ renting to the dictionary
+     of user's info '''
     item_dict["Item"] = whatInstrument
     userInfo_lst.append(item_dict)
 
