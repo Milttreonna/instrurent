@@ -11,7 +11,7 @@ return_dict = {}
 
 with open("revenue.txt", "r") as revenueFile:
     revenue = revenueFile.read()
-    revenue = float(revenue[:-1])
+    revenue = (revenue[:-1])
 
 with open("emails.txt", "r") as emailFile:
     emails = emailFile.read().split()

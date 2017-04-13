@@ -17,7 +17,6 @@ information = [["acoustic-guitars", "10", "439.99", "57.20"],
 
 def valid_email():
     '''Takes user's email if it's valid or not. '''
-
     if "@" in userEmail and ".com" in userEmail:
         if userEmail in emails:
             #adds email to user's info

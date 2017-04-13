@@ -18,7 +18,7 @@ def get_buy_total(total):
     userInfo_lst.append(total_dict)
     revenueString = ""
     revenueString += str(total)
-    newRevenue = revenue + (float(revenueString))
+    newRevenue = float(revenue) + (float(revenueString))
     newRevenue = round(newRevenue, 2)
     with open("revenue.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
@@ -101,8 +101,7 @@ def get_customer_total(weeks, item):
     userInfo_lst.append(total_dict)
     revenueString = ""
     revenueString += str((total))
-    newRevenue = revenue + (float(revenueString))
-    newRevenue = round(newRevenue, 2)
+    newRevenue = float(revenue) + (float(revenueString))
     with open("revenue.txt", "w") as revenueFile:
         revenueFile.write(str(newRevenue))
     print("Total to rent:")
